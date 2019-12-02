@@ -1,0 +1,1 @@
+export const SET_NOWPLAYING = 'SET_NOWPLAYING'
