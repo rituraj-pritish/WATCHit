@@ -14,6 +14,7 @@ import Movie from '../movie/Movie';
 import SearchResult from '../search-result/SearchResult';
 import Dashboard from '../dashboard/Dashboard';
 import PrivateRoute from '../PrivateRoute';
+import Discover from '../discover/Discover';
 
 const App = ({ movies,auth,getSession, fetchNowPlayingMovies }) => {
   useEffect(() => {
@@ -35,6 +36,11 @@ const App = ({ movies,auth,getSession, fetchNowPlayingMovies }) => {
               exact
               path='/search/:search_query'
               component={SearchResult}
+            />
+            <Route
+              exact
+              path='/discover'
+              component={Discover}
             />
             <PrivateRoute
               exact
