@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux'
+
+import mdb from '../../movieDB/mdb'
 import {
   Navbar,
   RoundedInput,
-  LinkContainer,
   StyledLink,
   LeftContainer,
   RightContainer,
+  RoundedButton,
   Logo
 } from './NavBar.styles';
+import {fetchSearchQuery} from '../../actions/moviesActions'
+import {login,logout} from '../../actions/authActions'
 
-const NavBar = () => {
-  const [search, setSearch] = useState('');
+const NavBar = ({history,movies,fetchSearchQuery,login,logout,auth}) => {
+  const [search, setSearch] = useState(movies.search.query || '');
 
   const handleChange = e => {
     setSearch(e.target.value);
@@ -19,12 +24,18 @@ const NavBar = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    setSearch('')
+    fetchSearchQuery(search)
+    history.push(`/search/${search}`)
   }
+
+  const handleLogin = async () => {
+
+  }
+
   return (
     <Navbar>
       <LeftContainer>
-        <Logo to='/home'>toWATCH</Logo>
+        <Logo to='/'>toWATCH</Logo>
       </LeftContainer>
 
       <form onSubmit={handleSubmit}>
@@ -32,16 +43,27 @@ const NavBar = () => {
           type='text'
           name='search'
           onChange={handleChange}
-          placeholder='Search Movies'
+          placeholder='Search Movies, TV Shows, Cast'
           value={search}
         />
+        <RoundedButton bg='#99f2c8' >Search</RoundedButton>
       </form>
 
       <RightContainer>
-        <StyledLink to='/'>Link</StyledLink>
+        {auth.isAuth ?
+        <StyledLink onClick={logout} to='/'>Logout</StyledLink> :
+        <StyledLink onClick={login} to='/'>Login</StyledLink> 
+        }
       </RightContainer>
     </Navbar>
   );
 };
 
-export default NavBar;
+const mapStateToProps = (state) => ({
+  movies: state.movies,
+  auth: state.auth
+})
+
+const navbar = connect(mapStateToProps,{fetchSearchQuery,login,logout})(NavBar)
+
+export default withRouter(navbar);
