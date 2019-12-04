@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import mdb from '../../movieDB/mdb';
 import {
   Navbar,
   RoundedInput,
@@ -17,7 +16,6 @@ import {
 import { fetchSearchQuery } from '../../actions/moviesActions';
 import { login, logout } from '../../actions/authActions';
 import SideBar from '../side-bar/SideBar';
-import Hamburger from '../Hamburger';
 
 const NavBar = ({ history, movies, fetchSearchQuery, login, logout, auth }) => {
   const [search, setSearch] = useState(movies.search.query || '');
@@ -33,7 +31,6 @@ const NavBar = ({ history, movies, fetchSearchQuery, login, logout, auth }) => {
     history.push(`/search/${search}`);
   };
 
-  const handleLogin = async () => {};
   return (
     <Navbar>
       <LeftContainer>

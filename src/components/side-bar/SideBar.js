@@ -28,17 +28,14 @@ const SideBar = ({ open, setOpen }) => {
       <Hamburger open={open} setOpen={setOpen} />
       <SidebarContainer ref={node} open={open}>
         <ul>
-          <li>
+          <li key='1'>
             <Link to='/discover'>Discover</Link>
           </li>
-          <li>
-            <Link>Link</Link>
+          <li key='2'>
+            <Link to='/'>Link</Link>
           </li>
-          <li>
-            <Link>Link</Link>
-          </li>
-          <li>
-            <Link>Link</Link>
+          <li key='3'>
+            <Link to='/'>Link</Link>
           </li>
         </ul>
       </SidebarContainer>

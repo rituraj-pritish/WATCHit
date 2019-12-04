@@ -9,7 +9,9 @@ import {
 
 export const fetchNowPlayingMovies = () => async dispatch => {
   try {
-    const res = await mdb.get('/movie/now_playing');
+    const res = await mdb.get('/movie/now_playing', {params: {
+      append_to_response: 'genres'
+    }});
 
     dispatch({ type: SET_NOWPLAYING, payload: res.data });
   } catch (err) {}
@@ -17,8 +19,10 @@ export const fetchNowPlayingMovies = () => async dispatch => {
 
 export const fetchMovie = id => async dispatch => {
   try {
-    const res = await mdb.get(`/movie/${id}`);
-
+    const res = await mdb.get(`/movie/${id}`,{params: {
+      append_to_response: 'images,credits,videos'
+    }});
+    console.log(res.data);
     dispatch({ type: SET_CURRENT_MOVIE, payload: res.data });
   } catch (err) {}
 };
@@ -38,3 +42,17 @@ export const fetchSearchQuery = query => async dispatch => {
 export const removeSearchResults = () => ({
   type: REMOVE_SEARCH_RESULTS
 });
+
+export const getDiscover = (params) => async dispatch => {
+  try {
+    const res = await mdb.get('/discover/movie?sort_by=popularity.desc',{
+      params: {
+        append_to_response: 'images'
+      }
+    })
+
+    console.log(res.data);
+  } catch (err) {
+    
+  }
+}

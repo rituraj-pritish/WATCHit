@@ -3,19 +3,7 @@ import sizes from '../../sizes';
 import { Link } from 'react-router-dom';
 
 export const Navbar = styled.div`
-  background: #1f4037;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #99f2c8,
-    #1f4037
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #99f2c8,
-    #1f4037
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  background: ${({theme}) => theme.palette.navColor};
   position: fixed;
   top: 0;
   z-index: 50;
@@ -96,7 +84,7 @@ export const StyledLink = styled(Link)`
 export const LeftContainer = styled.div`
 
   margin-left: 4rem;
-  color: black;
+  color: ${({theme}) => theme.text.secondary};
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -1,0 +1,12 @@
+.custom-swiper-container-corousel {
+  width: 100%;
+  overflow: hidden;
+  height: 260px;
+  position: relative;
+}
+
+@media (max-width: 500px) {
+  .custom-swiper-container-corousel {
+    height: 230px;
+  }
+}

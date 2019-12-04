@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Swiper from 'react-id-swiper';
 import 'swiper/css/swiper.css';
-import './ImageSlider.css'
+import './ImageSlider.css';
 import {
   ImageOverlay,
   OverlayContent,
   BackgroundImage
 } from '../../index.styles';
+import { Slide } from './ImageSlider.styles';
 
 const ImageSlider = ({ movies }) => {
   const [swiper, updateSwiper] = useState(null);
@@ -26,21 +27,21 @@ const ImageSlider = ({ movies }) => {
   const images =
     movies &&
     movies.results.map(({ title, vote_average, backdrop_path, id }) => (
-      <Link to={`/movie/${id}`} key={id}>
-        <ImageOverlay />
-        <BackgroundImage
-          position='absolute'
-          style={{
-            background: `url(${`https://image.tmdb.org/t/p/original${backdrop_path}`}) center top / cover no-repeat`,
-            width: '100%',
-            height: '90vh'
-          }}
-        />
-        <OverlayContent>
-          <h1>{title}</h1>
-          <span>genre</span> | Rating: {vote_average}
-        </OverlayContent>
-      </Link>
+      <Slide style={{ position: 'relative' }}>
+        <Link to={`/movie/${id}`} key={id}>
+          <ImageOverlay />
+          <OverlayContent>
+            <h1>{title}</h1>
+            <span>genre</span> | Rating: {vote_average}
+          </OverlayContent>
+
+          <BackgroundImage
+            style={{
+              background: `url(${`https://image.tmdb.org/t/p/original${backdrop_path}`}) center top / cover no-repeat`
+            }}
+          />
+        </Link>
+      </Slide>
     ));
 
   const params = {

@@ -4,11 +4,6 @@ import sizes from '../../sizes'
 export const Global = createGlobalStyle`
   html {
   font-size: 10px;
-  background: #c31432;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #240b36, #c31432);
-  background: linear-gradient(to right, #240b36, #c31432);
-  color: white;
-  overflow-x: hidden;
   }
 
   body {
@@ -17,13 +12,17 @@ export const Global = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: ${({theme}) => theme.text.primary};
   }
 
 `;
 
 export const AppContainer = styled.div`
-  margin-top: 64px;
-  padding: 0 30px;
+  background: ${({theme}) => theme.palette.bgColor};
   font-size: 1.6rem;
-  
+  margin-top: 64px;
+
+  @media ${sizes.md} {
+    margin-top: 50px;
+  }
 `;

@@ -1,25 +1,21 @@
 import styled from 'styled-components';
-import sizes from './sizes'
+import sizes from './sizes';
+import { Link } from 'react-router-dom';
 
 export const BackgroundImage = styled.div`
   position: absolute;
-  top: ${props => props.top};
-  right: 0;
-  left: 0;
+  top: 0;
   width: 100%;
   height: 90vh;
 
   @media ${sizes.md} {
     height: 65vh;
-    margin-top: -14px;
   }
 `;
 
 export const ImageOverlay = styled.div`
   position: absolute;
-  top: ${props => props.top};
-  left: 0;
-  right: 0;
+  top: 0;
   z-index: 4;
   width: 100%;
   height: 90vh;
@@ -29,19 +25,23 @@ export const ImageOverlay = styled.div`
 
   @media ${sizes.md} {
     height: 65vh;
-    margin: ${props => props.mr}
   }
 `;
 
 export const OverlayContent = styled.div`
   color: white;
-  position: absolute;
   margin: 30px;
-  z-index: 5;
+  z-index: 4;
+  position: absolute;
 `;
 
 export const SmallImage = styled.div`
   min-width: 16rem;
   height: 24rem;
   margin-right: 30px;
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: ${({ theme, color }) => (color ? color : theme.text.primary)};
 `;

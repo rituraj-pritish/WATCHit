@@ -14,7 +14,7 @@ export const SidebarContainer = styled.div`
 
   a{
     text-decoration: none;
-    color: #fff;
+    color: ${({theme}) => theme.text.primary};
   }
 
   ul {

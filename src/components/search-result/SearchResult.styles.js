@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import sizes from '../../sizes'
+import sizes from '../../sizes';
+import { Link } from 'react-router-dom';
 
 export const Grid = styled.div`
   display: grid;
@@ -24,12 +25,47 @@ export const Grid = styled.div`
   }
 `;
 
-export const Poster = styled.div`
+export const PosterOverlay = styled.div`
+  position: absolute;
+  background: #000;
+  opacity: 0.8;
+  height: 95%;
+  width: 100%;
+  display: none;
+`;
+
+export const OverlayContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  color: ${({ theme }) => theme.text.primary};
+`;
+
+export const PosterContainer = styled.div`
+  position: relative;
   width: 200px;
   height: 300px;
+  cursor: pointer;
+
+  &:hover ${PosterOverlay} {
+    display: block;
+  }
 
   @media ${sizes.lg} {
     width: 160px;
     height: 250px;
   }
+`;
+export const PosterDetails = styled.div``;
+
+export const Poster = styled.div`
+  width: 100%;
+  height: 95%;
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: ${({theme}) => theme.text.primary}
 `
