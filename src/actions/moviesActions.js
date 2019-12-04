@@ -20,7 +20,7 @@ export const fetchNowPlayingMovies = () => async dispatch => {
 export const fetchMovie = id => async dispatch => {
   try {
     const res = await mdb.get(`/movie/${id}`,{params: {
-      append_to_response: 'images,credits,videos'
+      append_to_response: 'images,credits,videos,reviews,recommendations'
     }});
     console.log(res.data);
     dispatch({ type: SET_CURRENT_MOVIE, payload: res.data });

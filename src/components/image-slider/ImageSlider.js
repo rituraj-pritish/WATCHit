@@ -27,8 +27,8 @@ const ImageSlider = ({ movies }) => {
   const images =
     movies &&
     movies.results.map(({ title, vote_average, backdrop_path, id }) => (
-      <Slide style={{ position: 'relative' }}>
-        <Link to={`/movie/${id}`} key={id}>
+      <Slide style={{ position: 'relative' }} key={id}>
+        <Link to={`/movie/${id}`}>
           <ImageOverlay />
           <OverlayContent>
             <h1>{title}</h1>

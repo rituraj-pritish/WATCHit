@@ -39,9 +39,9 @@ const Carousel = ({ data, mediaType, carouselTitle }) => {
     }
   };
 
-  const slides = data.map(({ poster_path, profile_path, id, name, title }) => (
+  const slides = data.map(({ poster_path, profile_path, id, name, title,media_type }) => (
     <CarouselItemContainer key={id}>
-      <StyledLink to={`/${mediaType}/${id}`}>
+      <StyledLink to={`/${mediaType ? mediaType : media_type}/${id}`}>
         <ImageContainer>
           <CarouselImage
             style={{

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player';
 import { fetchMovie, removeCurrentMovie } from '../../actions/moviesActions';
 
 import Loader from '../loader/Loader';
@@ -9,19 +9,13 @@ import {
   Overview,
   DetailsOverviewContainer,
   Rating,
-  Summary,
+  Poster,
   MovieDetailsContainer,
-  BackdropContainer,
-  BackdropOverlay
+  BackdropContainer
 } from './MovieDetails.styles';
-import {
-  ImageOverlay,
-  OverlayContent,
-  SmallImage,
-  BackgroundImage
-} from '../../index.styles';
 
 import Carousel from '../carousel/Carousel';
+import Backdrop from '../backdrop/Backdrop';
 
 const MovieDetails = ({
   match,
@@ -53,26 +47,34 @@ const MovieDetails = ({
     runtime,
     vote_count,
     vote_average,
+    videos,
     credits: { cast }
   } = movies.current;
-
-  const handleBack = () => {
-    history.goBack();
-  };
 
   return (
     <div>
       <BackdropContainer>
-        <BackdropOverlay />
-        <OverlayContent>
-          <Icon
-            size='4'
-            color='#fff'
-            className='fas fa-long-arrow-alt-left'
-            onClick={handleBack}
+        {videos.results.length > 0 ? (
+          <ReactPlayer
+            width='100%'
+            height='100%'
+            playing
+            controls
+            url={`https://www.youtube.com/watch?v=${videos.results[videos.results.length - 1].key}`}
           />
+        ) : (
+          <Backdrop
+            backdrop_path={backdrop_path}
+            poster_path={poster_path}
+            overview={overview}
+            vote_average={vote_average}
+          />
+        )}
+      </BackdropContainer>
+      <MovieDetailsContainer>
+        {videos.results.length > 0 && (
           <DetailsOverviewContainer>
-            <SmallImage
+            <Poster
               style={{
                 background: `url(${`https://image.tmdb.org/t/p/original${poster_path}`}) center top / cover no-repeat`
               }}
@@ -88,32 +90,9 @@ const MovieDetails = ({
               </span>
             </Overview>
           </DetailsOverviewContainer>
-        </OverlayContent>
+        )}
 
-        <BackgroundImage
-          style={{
-            background: `url(${`https://image.tmdb.org/t/p/original${backdrop_path}`}) center top / cover no-repeat`
-          }}
-        />
-      </BackdropContainer>
-      <MovieDetailsContainer>
-        <Summary>
-          <h4>Summary</h4>
-          {overview}
-          <span>
-            <Icon
-              size='3'
-              color='#d4af37'
-              margin='0 10px'
-              className='far fa-star'
-            />
-            <Rating>
-              <h2>{vote_average}</h2> /10
-            </Rating>
-          </span>
-        </Summary>
         <Carousel data={cast} mediaType='person' carouselTitle='Cast' />
-        <ReactPlayer url='https://www.youtube.com/watch?v=zqUopiAYdRg' controls={true} />
       </MovieDetailsContainer>
     </div>
   );
