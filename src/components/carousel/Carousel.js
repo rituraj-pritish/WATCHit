@@ -5,7 +5,8 @@ import './Carousel.css';
 import {
   CarouselImage,
   CarouselItemContainer,
-  CarouselCard
+  CarouselCard,
+  ImageContainer
 } from './Carousel.styles';
 import { StyledLink } from '../../index.styles';
 
@@ -41,13 +42,16 @@ const Carousel = ({ data, mediaType, carouselTitle }) => {
   const slides = data.map(({ poster_path, profile_path, id, name, title }) => (
     <CarouselItemContainer key={id}>
       <StyledLink to={`/${mediaType}/${id}`}>
-        <CarouselImage
-          style={{
-            background: `url(${`https://image.tmdb.org/t/p/original${
-              poster_path ? poster_path : profile_path
-            }`}) center center / cover no-repeat `
-          }}
-        />
+        <ImageContainer>
+          <CarouselImage
+            style={{
+              background: `url(${`https://image.tmdb.org/t/p/original${
+                poster_path ? poster_path : profile_path
+              }`}) center center / cover no-repeat `
+            }}
+          />
+        </ImageContainer>
+
         {name || title}
       </StyledLink>
     </CarouselItemContainer>

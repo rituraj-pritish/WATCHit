@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-
+import ReactPlayer from 'react-player'
 import { fetchMovie, removeCurrentMovie } from '../../actions/moviesActions';
 
 import Loader from '../loader/Loader';
@@ -113,6 +113,7 @@ const MovieDetails = ({
           </span>
         </Summary>
         <Carousel data={cast} mediaType='person' carouselTitle='Cast' />
+        <ReactPlayer url='https://www.youtube.com/watch?v=zqUopiAYdRg' controls={true} />
       </MovieDetailsContainer>
     </div>
   );
