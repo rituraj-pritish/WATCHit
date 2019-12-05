@@ -37,7 +37,7 @@ export const getSession = () => async dispatch => {
         window.localStorage.setItem('sessionId', res.data.session_id);
       } else {
         dispatch({ type: AUTH_ERROR });
-        return
+        return;
       }
     }
 
