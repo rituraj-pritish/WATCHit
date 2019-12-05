@@ -4,7 +4,7 @@ import { LOGIN, AUTH_ERROR, LOGOUT } from './types';
 export const login = () => async dispatch => {
   const redirectUrl =
     process.env.NODE_ENV === 'production'
-      ? ''
+      ? 'https://watchit-watchit.herokuapp.com/dashboard'
       : 'http://localhost:3000/dashboard';
 
   try {

@@ -1,9 +1,8 @@
 import axios from 'axios'
-import config from '../config/config'
 
 export default  axios.create({
   baseURL: 'https://api.themoviedb.org/3',
   params: {
-    api_key: config.apiKey
+    api_key: process.env.REACT_APP_API_KEY
   }
 })
