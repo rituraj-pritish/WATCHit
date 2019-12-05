@@ -26,7 +26,7 @@ const App = ({ movies, auth, getSession, fetchNowPlayingMovies }) => {
   }, [fetchNowPlayingMovies]);
 
   if (movies.loading || auth.loading) return <Loader />;
-
+  console.log(process.env.NODE_ENV);
   return (
     <ThemeProvider theme={theme}>
       <Global />
