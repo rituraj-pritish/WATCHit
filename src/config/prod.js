@@ -1,3 +1,3 @@
 export default {
-  apiKey: process.env.API_KEY
+  apiKey: 'this is production key'
 };
