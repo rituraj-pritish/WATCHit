@@ -1,7 +1,7 @@
 import styled,{keyframes} from 'styled-components';
 
 export const LoaderContainer = styled.div`
-  background: linear-gradient(to right, #240b36, #c31432);
+  background: linear-gradient(to right, #7c34b3, #c93a53);
   position: absolute;
   top: 0;
   left: 0;
@@ -12,7 +12,6 @@ export const LoaderContainer = styled.div`
   align-items: center;
   width: 100vw;
   height: 100vh;
-  opacity: 0.7;
   transition: opacity 0.5s;
 `;
 

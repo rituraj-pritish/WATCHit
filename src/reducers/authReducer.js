@@ -1,9 +1,10 @@
-import { LOGIN, LOGOUT, AUTH_ERROR } from '../actions/types';
+import { LOGIN, LOGOUT, AUTH_ERROR, SET_USER } from '../actions/types';
 
 const initialState = {
   isAuth: false,
   loading: true,
-  sessionId: ''
+  sessionId: '',
+  user: null
 };
 
 export default (state = initialState, { type, payload }) => {

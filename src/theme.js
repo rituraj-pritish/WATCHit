@@ -2,7 +2,8 @@ export default {
   palette: {
     gold: '#d4af37',
     navColor: 'linear-gradient( to right, #99f2c8, #1f4037 );',
-    bgColor: 'linear-gradient(to right,#240b36,#c31432);'
+    bgColor: 'linear-gradient(to right,#240b36,#c31432);',
+    overlayBg: '#000000b8',
   },
   text: {
     primary: 'white',

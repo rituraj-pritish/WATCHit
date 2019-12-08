@@ -10,7 +10,7 @@ import {
 } from '../../index.styles';
 import { Slide } from './ImageSlider.styles';
 
-const ImageSlider = ({ movies }) => {
+const ImageSlider = ({ data, slideTime, link }) => {
   const [swiper, updateSwiper] = useState(null);
 
   useEffect(() => () => {
@@ -22,27 +22,34 @@ const ImageSlider = ({ movies }) => {
       swiper.slideNext();
     }
   };
-  const interval = setInterval(nextSlide, 3000);
+  const interval = setInterval(nextSlide, slideTime);
 
-  const images =
-    movies &&
-    movies.results.map(({ title, vote_average, backdrop_path, id }) => (
+  const images = data.map(
+    ({ title, vote_average, backdrop_path,file_path, id }) => (
       <Slide style={{ position: 'relative' }} key={id}>
-        <Link to={`/movie/${id}`}>
-          <ImageOverlay />
-          <OverlayContent>
-            <h1>{title}</h1>
-            <span>genre</span> | Rating: {vote_average}
-          </OverlayContent>
+        {link && (
+          <Link to={`/movie/${id}`}>
+            <ImageOverlay />
+            <OverlayContent>
+              <h1>{title}</h1>
+              <span>genre</span> | Rating: {vote_average}
+            </OverlayContent>
 
-          <BackgroundImage
-            style={{
-              background: `url(${`https://image.tmdb.org/t/p/original${backdrop_path}`}) center top / cover no-repeat`
-            }}
-          />
-        </Link>
+            <BackgroundImage
+              style={{
+                background: `url(${`https://image.tmdb.org/t/p/original${backdrop_path}`}) center top / cover no-repeat`
+              }}
+            />
+          </Link>
+        )}
+        <BackgroundImage
+          style={{
+            background: `url(${`https://image.tmdb.org/t/p/original${backdrop_path || file_path}`}) center top / cover no-repeat`
+          }}
+        />
       </Slide>
-    ));
+    )
+  );
 
   const params = {
     slidesPerView: 1,

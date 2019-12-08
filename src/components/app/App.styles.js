@@ -15,6 +15,11 @@ export const Global = createGlobalStyle`
     color: ${({theme}) => theme.text.primary};
   }
 
+  a {
+    text-decoration: none;
+    color: ${({theme,color}) => color ? color : theme.text.primary};
+  }
+
 `;
 
 export const AppContainer = styled.div`

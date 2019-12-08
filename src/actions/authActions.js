@@ -1,5 +1,6 @@
 import mdb from '../movieDB/mdb';
-import { LOGIN, AUTH_ERROR, LOGOUT } from './types';
+import { LOGIN, AUTH_ERROR, LOGOUT, SET_USER } from './types';
+import { setAlert, getUser, fetchWatchlists, clearUserData } from './userActions';
 
 export const login = () => async dispatch => {
   const redirectUrl =
@@ -22,7 +23,9 @@ export const login = () => async dispatch => {
   }
 };
 
-export const getSession = () => async dispatch => {
+let callWatchlists = true
+export const getSession = callOnEveryRender => async dispatch => {
+  callWatchlists = callOnEveryRender;
   const request_token = window.localStorage.getItem('reqToken');
   const session_id = window.localStorage.getItem('sessionId');
 
@@ -33,18 +36,22 @@ export const getSession = () => async dispatch => {
       res = await mdb.post('/authentication/session/new', {
         request_token
       });
-      if (res.data.success) {
-        window.localStorage.setItem('sessionId', res.data.session_id);
-      } else {
-        dispatch({ type: AUTH_ERROR });
-        return;
-      }
     }
+    if (session_id || res.data.session_id) {
+      dispatch(getUser(session_id ? session_id : res.data.session_id));
 
-    dispatch({
-      type: LOGIN,
-      payload: session_id ? session_id : res.data.session_id
-    });
+      //only call fetch Watchlists when user first login
+      if (callWatchlists) {
+        dispatch(fetchWatchlists());
+      }
+
+      dispatch({
+        type: LOGIN,
+        payload: session_id ? session_id : res.data.session_id
+      });
+    } else {
+      dispatch({ type: AUTH_ERROR });
+    }
   } catch (err) {
     dispatch({ type: AUTH_ERROR });
   }
@@ -55,6 +62,7 @@ export const logout = () => async dispatch => {
   window.localStorage.removeItem('sessionId');
 
   dispatch({ type: LOGOUT });
+  dispatch(clearUserData())
 
-  await mdb.post('/authentication/session', { session_id });
+  await mdb.delete('/authentication/session', { session_id });
 };
