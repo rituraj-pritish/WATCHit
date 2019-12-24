@@ -24,8 +24,11 @@ const ImageSlider = ({ data, slideTime, link }) => {
   };
   const interval = setInterval(nextSlide, slideTime);
 
-  const images = data.map(
-    ({ title, vote_average, backdrop_path,file_path, id }) => (
+  const images = data
+    .filter(item => {
+      if (item.backdrop_path || item.file_path) return item;
+    })
+    .map(({ title, vote_average, backdrop_path, file_path, id }) => (
       <Slide style={{ position: 'relative' }} key={id}>
         {link && (
           <Link to={`/movie/${id}`}>
@@ -44,12 +47,12 @@ const ImageSlider = ({ data, slideTime, link }) => {
         )}
         <BackgroundImage
           style={{
-            background: `url(${`https://image.tmdb.org/t/p/original${backdrop_path || file_path}`}) center top / cover no-repeat`
+            background: `url(${`https://image.tmdb.org/t/p/original${backdrop_path ||
+              file_path}`}) center top / cover no-repeat`
           }}
         />
       </Slide>
-    )
-  );
+    ));
 
   const params = {
     slidesPerView: 1,
