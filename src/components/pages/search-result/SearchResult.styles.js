@@ -2,6 +2,22 @@ import styled from 'styled-components';
 import sizes from '../../../sizes';
 import { Link } from 'react-router-dom';
 
+export const SearchResultsContainer = styled.div`
+  padding: ${({ theme }) => theme.padding.xl};
+
+  @media ${sizes.lg} {
+    padding: ${({ theme }) => theme.padding.lg};
+  }
+
+  @media ${sizes.md} {
+    padding: ${({ theme }) => theme.padding.md};
+  }
+
+  @media ${sizes.sm} {
+    padding: ${({ theme }) => theme.padding.sm};
+  }
+`;
+
 export const Grid = styled.div`
   display: grid;
   padding: 30px;
@@ -27,10 +43,12 @@ export const Grid = styled.div`
 
 export const PosterOverlay = styled.div`
   position: absolute;
-  background: ${({theme}) => theme.overlayBg};
+  transform: rotateY(90deg);
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 5;
   height: 95%;
   width: 100%;
-  display: none;
+  transition: 0.2s 0.2s;
 `;
 
 export const OverlayContent = styled.div`
@@ -42,15 +60,18 @@ export const OverlayContent = styled.div`
   color: ${({ theme }) => theme.text.primary};
 `;
 
+export const Poster = styled.div`
+  width: 160px;
+  height: 238px;
+  transition: 0.4s;
+  border-radius: 5px;
+`;
+
 export const PosterContainer = styled.div`
   position: relative;
   width: 200px;
   height: 300px;
   cursor: pointer;
-
-  &:hover ${PosterOverlay} {
-    display: block;
-  }
 
   @media ${sizes.lg} {
     width: 160px;
@@ -59,12 +80,7 @@ export const PosterContainer = styled.div`
 `;
 export const PosterDetails = styled.div``;
 
-export const Poster = styled.div`
-  width: 100%;
-  height: 95%;
-`;
-
 export const StyledLink = styled(Link)`
   text-decoration: none;
-  color: ${({theme}) => theme.text.primary}
-`
+  color: ${({ theme }) => theme.text.primary};
+`;

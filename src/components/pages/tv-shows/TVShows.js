@@ -5,23 +5,24 @@ import { discoverTv } from '../../../actions/tvActions';
 
 import Carousel from '../../carousel/Carousel';
 import Loader from '../../loader/Loader';
-import { TVShowsContainer } from './TVShows.styles';
+import { Container, Divider } from '../../../index.styles';
 
 const TVShows = ({ tv, discoverTv }) => {
-
   const { airing_today, topRated, popular } = tv.discover;
   if (tv.loading || !airing_today || !topRated || !popular) return <Loader />;
 
   return (
-    <TVShowsContainer>
+    <Container>
       <Carousel
         carouselTitle='Airing Today'
         data={airing_today}
         mediaType='tv'
       />
+      <Divider />
       <Carousel carouselTitle='Trending' data={popular} mediaType='tv' />
+      <Divider />
       <Carousel carouselTitle='Top Rated' data={topRated} mediaType='tv' />
-    </TVShowsContainer>
+    </Container>
   );
 };
 

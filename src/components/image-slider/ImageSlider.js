@@ -35,12 +35,16 @@ const ImageSlider = ({ data, slideTime, link }) => {
             <ImageOverlay />
             <OverlayContent>
               <h1>{title}</h1>
-              <span>genre</span> | Rating: {vote_average}
+              <div style={{marginLeft: '20px'}}>
+                <i style={{ color: 'red' }} className='fas fa-heart' />{' '}
+                {vote_average * 10} %
+              </div>
             </OverlayContent>
 
             <BackgroundImage
               style={{
-                background: `url(${`https://image.tmdb.org/t/p/original${backdrop_path}`}) center top / cover no-repeat`
+                background: `url(${`https://image.tmdb.org/t/p/original${backdrop_path ||
+                  file_path}`}) center top / cover no-repeat`
               }}
             />
           </Link>

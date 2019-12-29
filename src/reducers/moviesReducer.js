@@ -11,7 +11,6 @@ const initialState = {
   current: null,
   search: {
     results: [],
-    query: ''
   },
   discover: {
     popular: null,

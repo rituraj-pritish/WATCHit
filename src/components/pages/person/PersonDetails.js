@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { getPerson } from '../../../actions/personActions';
+import { getPerson, removeCurrentPerson } from '../../../actions/personActions';
 
 import Loader from '../../loader/Loader';
 import {
@@ -18,14 +18,16 @@ import Backdrop from '../../backdrop/Backdrop';
 import ImageSlider from '../../image-slider/ImageSlider';
 import Overview from '../../overview/Overview';
 
-const PersonDetails = ({ match, getPerson, person }) => {
+const PersonDetails = ({ match, getPerson, person, removeCurrentPerson }) => {
   useEffect(() => {
     getPerson(match.params.person_id);
-  }, []);
-  console.log(person);
+
+    return () => {
+      removeCurrentPerson();
+    };
+  }, [match.params.person_id]);
 
   if (!person.current || person.loading) return <Loader />;
-  console.log(person.current);
 
   const {
     name,
@@ -49,14 +51,21 @@ const PersonDetails = ({ match, getPerson, person }) => {
     .filter((item, idx) => idx < 20);
   return (
     <div>
-      <ImageSlider data={tagged_images.results} slideTime={5000} />
+      <ImageSlider
+        data={
+          tagged_images.results.length > 0
+            ? tagged_images.results
+            : images.profiles
+        }
+        slideTime={5000}
+      />
       <PersonDetailsContainer>
         <Overview
           title={name}
           overview={biography}
           poster_path={profile_path}
         />
-        <Carousel carouselTitle='Starred In' data={starredIn} />
+        <Carousel carouselTitle='Starred In' data={starredIn} mediaType='' />
       </PersonDetailsContainer>
     </div>
   );
@@ -68,5 +77,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getPerson }
+  { getPerson, removeCurrentPerson }
 )(PersonDetails);

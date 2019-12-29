@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { removeSearchResults } from '../../../actions/moviesActions';
 import {
+  SearchResultsContainer,
   Grid,
   Poster,
   PosterDetails,
@@ -14,9 +15,12 @@ import {
 import Loader from '../../loader/Loader';
 
 const SearchResult = ({ match, movies }) => {
-  useEffect(() => () => {
-    removeSearchResults()
-  }, []);
+  useEffect(
+    () => () => {
+      removeSearchResults();
+    },
+    []
+  );
   if (movies.loading || !movies.search.results) return <Loader />;
 
   const results = movies.search.results.map(
@@ -38,9 +42,6 @@ const SearchResult = ({ match, movies }) => {
       return (
         <PosterContainer key={id}>
           <StyledLink to={`/${media_type}/${id}`}>
-            <PosterOverlay>
-              <OverlayContent>{vote_average}</OverlayContent>
-            </PosterOverlay>
             <Poster
               style={{
                 background: `url(${`https://image.tmdb.org/t/p/original${
@@ -57,7 +58,11 @@ const SearchResult = ({ match, movies }) => {
     }
   );
 
-  return <Grid>{results.map(item => item)}</Grid>;
+  return (
+    <SearchResultsContainer>
+      <Grid>{results.map(item => item)}</Grid>
+    </SearchResultsContainer>
+  );
 };
 
 const mapStateToProps = state => ({

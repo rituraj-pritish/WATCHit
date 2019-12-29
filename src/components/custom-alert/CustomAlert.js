@@ -10,7 +10,7 @@ const CustomAlert = ({ alerts, removeAlert }) => {
     switch (type) {
       case 'error':
         return (
-          <Alert color='#ea4040'>
+          <Alert key={id} color='#ea4040'>
             {alert}
             <CloseIcon
               onClick={() => removeAlert(id)}
@@ -20,7 +20,7 @@ const CustomAlert = ({ alerts, removeAlert }) => {
         );
       case 'success':
         return (
-          <Alert color='#68bd3e'>
+          <Alert key={id} color='#68bd3e'>
             {alert}
             <CloseIcon
               onClick={() => removeAlert(id)}
@@ -30,7 +30,7 @@ const CustomAlert = ({ alerts, removeAlert }) => {
         );
       case 'info':
         return (
-          <Alert color='#5476dc'>
+          <Alert key={id} color='#5476dc'>
             {alert}
             <CloseIcon
               onClick={() => removeAlert(id)}
@@ -40,7 +40,7 @@ const CustomAlert = ({ alerts, removeAlert }) => {
         );
       default:
         return (
-          <Alert color='#e6ea4b'>
+          <Alert key={id} color='#e6ea4b'>
             {alert}
             <CloseIcon
               onClick={() => removeAlert(id)}

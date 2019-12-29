@@ -1,4 +1,4 @@
-import { SET_CURRENT_TV, SET_DISCOVER_TV } from '../actions/types';
+import { SET_CURRENT_TV, SET_DISCOVER_TV,REMOVE_CURRENT_TV } from '../actions/types';
 
 const initialState = {
   current: null,
@@ -17,6 +17,12 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         loading: false,
         current: payload
+      };
+    case REMOVE_CURRENT_TV:
+      return {
+        ...state,
+        loading: false,
+        current: null
       };
     case SET_DISCOVER_TV:
       return {

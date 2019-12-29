@@ -4,12 +4,17 @@ import {
   SET_USER,
   SET_LISTS,
   SET_WATCHLISTS,
+  SET_FAVOURITES,
   SET_ALERT,
   REMOVE_ALERT,
   ADD_MOVIE_TO_WATCHLIST,
   REMOVE_MOVIE_FROM_WATCHLIST,
   ADD_TV_TO_WATCHLIST,
   REMOVE_TV_FROM_WATCHLIST,
+  ADD_MOVIE_TO_FAVOURITE,
+  REMOVE_MOVIE_FROM_FAVOURITE,
+  ADD_TV_TO_FAVOURITE,
+  REMOVE_TV_FROM_FAVOURITE,
   CLEAR_USER_DATA
 } from '../actions/types';
 
@@ -18,6 +23,10 @@ const initialState = {
   modalOpen: false,
   lists: null,
   watchlist: {
+    tv: [],
+    movie: []
+  },
+  favourite: {
     tv: [],
     movie: []
   },
@@ -48,11 +57,20 @@ export default (state = initialState, { type, payload }) => {
         },
         loading: false
       };
+      case SET_FAVOURITES:
+      return {
+        ...state,
+        favourite: {
+          movie: payload.movie.results,
+          tv: payload.tv.results
+        },
+        loading: false
+      };
     case ADD_MOVIE_TO_WATCHLIST:
       return {
         ...state,
         watchlist: {
-          movie: [{ id: payload }, ...state.watchlist.movie],
+          movie: [payload, ...state.watchlist.movie],
           tv: state.watchlist.tv
         },
         loading: false
@@ -71,7 +89,7 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         watchlist: {
           movie: state.watchlist.movie,
-          tv: [{ id: payload }, ...state.watchlist.tv]
+          tv: [payload, ...state.watchlist.tv]
         },
         loading: false
       };
@@ -81,6 +99,42 @@ export default (state = initialState, { type, payload }) => {
         watchlist: {
           movie: state.watchlist.movie,
           tv: state.watchlist.tv.filter(item => item.id !== payload)
+        },
+        loading: false
+      };
+    case ADD_MOVIE_TO_FAVOURITE:
+      return {
+        ...state,
+        favourite: {
+          movie: [payload, ...state.favourite.movie],
+          tv: state.favourite.tv
+        },
+        loading: false
+      };
+    case REMOVE_MOVIE_FROM_FAVOURITE:
+      return {
+        ...state,
+        favourite: {
+          movie: state.favourite.movie.filter(item => item.id !== payload),
+          tv: state.favourite.tv
+        },
+        loading: false
+      };
+    case ADD_TV_TO_FAVOURITE:
+      return {
+        ...state,
+        favourite: {
+          movie: state.favourite.movie,
+          tv: [payload, ...state.favourite.tv]
+        },
+        loading: false
+      };
+    case REMOVE_TV_FROM_FAVOURITE:
+      return {
+        ...state,
+        favourite: {
+          movie: state.favourite.movie,
+          tv: state.favourite.tv.filter(item => item.id !== payload)
         },
         loading: false
       };
@@ -114,6 +168,10 @@ export default (state = initialState, { type, payload }) => {
         modalOpen: false,
         lists: null,
         watchlist: {
+          tv: [],
+          movie: []
+        },
+        favourite: {
           tv: [],
           movie: []
         },

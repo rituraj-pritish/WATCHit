@@ -1,5 +1,5 @@
 import mdb from '../movieDB/mdb'
-import {SET_CURRENT_TV, SET_DISCOVER_TV} from '../actions/types'
+import {SET_CURRENT_TV, SET_DISCOVER_TV,REMOVE_CURRENT_TV} from '../actions/types'
 
 export const getShow = (id) => async dispatch => {
   try {
@@ -14,6 +14,10 @@ export const getShow = (id) => async dispatch => {
     
   }
 }
+
+export const removeCurrentTv = () => ({
+  type: REMOVE_CURRENT_TV
+})
 
 export const discoverTv = () => async dispatch => {
   try {

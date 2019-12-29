@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 import {
   closeModal,
   getUser,
-  fetchWatchlists
+  fetchWatchlists,
+  fetchFavourites
 } from '../../actions/userActions';
 import {
   fetchNowPlayingMovies,
@@ -33,6 +34,8 @@ import Persons from '../pages/persons/Persons';
 import Footer from '../layout/footer/Footer';
 import PlaylistModal from '../playlist-modal/PlaylistModal';
 import CustomAlert from '../custom-alert/CustomAlert';
+import Watchlist from '../pages/watchlist/Watchlist';
+import Favourites from '../pages/favourites/Favourites';
 
 const App = ({
   movies,
@@ -41,6 +44,7 @@ const App = ({
   getSession,
   fetchNowPlayingMovies,
   fetchWatchlists,
+  fetchFavourites,
   getUser,
   discoverMovies,
   discoverTv,
@@ -53,11 +57,18 @@ const App = ({
     getSession();
   }, [fetchNowPlayingMovies, discoverMovies, discoverTv, getSession]);
 
+  useEffect(() => {
+    if (auth.isAuth && user.user) {
+      fetchWatchlists(user.user.id);
+      fetchFavourites(user.user.id);
+    }
+  }, [user.user]);
+
   if (movies.loading || auth.loading) return <Loader />;
 
   return (
     <ThemeProvider theme={theme}>
-      <Global />
+      <Global/>
       <Fragment>
         <Router>
           <NavBar />
@@ -80,6 +91,16 @@ const App = ({
               <Route exact path='/discover/tv-shows' component={TVShows} />
               <Route exact path='/discover/persons' component={Persons} />
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
+              <PrivateRoute
+                exact
+                path='/user/watchlist'
+                component={Watchlist}
+              />
+              <PrivateRoute
+                exact
+                path='/user/favourites'
+                component={Favourites}
+              />
               <Route path='/' component={Home} />
             </Switch>
           </AppContainer>
@@ -106,6 +127,7 @@ export default connect(
     getUser,
     closeModal,
     fetchWatchlists,
+    fetchFavourites,
     discoverMovies,
     discoverTv
   }

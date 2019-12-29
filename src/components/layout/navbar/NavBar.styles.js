@@ -3,7 +3,7 @@ import sizes from '../../../sizes';
 import { Link } from 'react-router-dom';
 
 export const Navbar = styled.div`
-  background: ${({theme}) => theme.palette.navColor};
+  background: ${({ theme }) => theme.palette.navColor};
   position: fixed;
   top: 0;
   z-index: 15;
@@ -66,7 +66,7 @@ export const RoundedInput = styled.input`
   border-radius: 2rem;
   height: 4.2rem;
   padding: 0 2rem;
-  width: ${({width}) =>width ? width + 'px' : '100%' };
+  width: ${({ width }) => (width ? width + 'px' : '100%')};
   &:focus {
     outline: none;
   }
@@ -82,9 +82,8 @@ export const StyledLink = styled(Link)`
   color: inherit;
 `;
 export const LeftContainer = styled.div`
-
   margin-left: 4rem;
-  color: ${({theme}) => theme.text.secondary};
+  color: ${({ theme }) => theme.text.secondary};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -95,12 +94,11 @@ export const LeftContainer = styled.div`
   }
 
   @media ${sizes.md} {
-    width :20px;
+    width: 20px;
   }
 `;
 
 export const RightContainer = styled.div`
-
   margin-right: 4rem;
 
   @media ${sizes.lg} {
@@ -108,7 +106,6 @@ export const RightContainer = styled.div`
   }
 
   @media ${sizes.md} {
-    
   }
 `;
 
@@ -127,5 +124,13 @@ export const Form = styled.form`
   align-items: center;
   justify-content: center;
   width: 50%;
-  
+`;
+
+export const UserIcon = styled.i`
+  font-size: 38px;
+  cursor: pointer;
+
+  @media ${sizes.md} {
+    font-size: 30px;
+  }
 `;

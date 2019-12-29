@@ -1,12 +1,18 @@
 import mdb from '../movieDB/mdb';
 import { LOGIN, AUTH_ERROR, LOGOUT, SET_USER } from './types';
-import { setAlert, getUser, fetchWatchlists, clearUserData } from './userActions';
+import {
+  setAlert,
+  getUser,
+  fetchWatchlists,
+  fetchFavourites,
+  clearUserData
+} from './userActions';
 
 export const login = () => async dispatch => {
   const redirectUrl =
     process.env.NODE_ENV === 'production'
       ? 'https://watchit-watchit.herokuapp.com/dashboard'
-      : 'http://localhost:3000/dashboard';
+      : 'https://localhost:3000/dashboard';
 
   try {
     const res = await mdb.get('/authentication/token/new');
@@ -14,7 +20,7 @@ export const login = () => async dispatch => {
     const request_token = res.data.request_token;
 
     if (res.data.success) {
-      window.location.href = `https://www.themoviedb.org/authenticate/${request_token}?redirect_to=${redirectUrl}`;
+      window.location.href = `https://www.themoviedb.org/authenticate/${request_token}`;
     }
 
     window.localStorage.setItem('reqToken', request_token);
@@ -23,9 +29,7 @@ export const login = () => async dispatch => {
   }
 };
 
-let callWatchlists = true
-export const getSession = callOnEveryRender => async dispatch => {
-  callWatchlists = callOnEveryRender;
+export const getSession = () => async (dispatch) => {
   const request_token = window.localStorage.getItem('reqToken');
   const session_id = window.localStorage.getItem('sessionId');
 
@@ -39,11 +43,6 @@ export const getSession = callOnEveryRender => async dispatch => {
     }
     if (session_id || res.data.session_id) {
       dispatch(getUser(session_id ? session_id : res.data.session_id));
-
-      //only call fetch Watchlists when user first login
-      if (callWatchlists) {
-        dispatch(fetchWatchlists());
-      }
 
       dispatch({
         type: LOGIN,
@@ -60,9 +59,10 @@ export const getSession = callOnEveryRender => async dispatch => {
 export const logout = () => async dispatch => {
   const session_id = window.localStorage.getItem('sessionId');
   window.localStorage.removeItem('sessionId');
+  window.localStorage.removeItem('persist:root');
 
   dispatch({ type: LOGOUT });
-  dispatch(clearUserData())
+  dispatch(clearUserData());
 
   await mdb.delete('/authentication/session', { session_id });
 };

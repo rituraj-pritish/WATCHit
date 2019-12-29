@@ -1,5 +1,5 @@
 import mdb from '../movieDB/mdb'
-import {SET_CURRENT_PERSON} from '../actions/types'
+import {SET_CURRENT_PERSON,REMOVE_CURRENT_PERSON} from '../actions/types'
 
 export const getPerson = (id) => async dispatch => {
   try {
@@ -14,3 +14,7 @@ export const getPerson = (id) => async dispatch => {
     
   }
 }
+
+export const removeCurrentPerson = () => ({
+  type: REMOVE_CURRENT_PERSON
+})

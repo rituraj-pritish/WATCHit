@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -11,15 +11,19 @@ import {
   RoundedButton,
   Logo,
   Form,
-  IconButton
+  IconButton,
+  UserIcon
 } from './NavBar.styles';
 import { fetchSearchQuery } from '../../../actions/moviesActions';
 import { login, logout } from '../../../actions/authActions';
 import SideBar from '../side-bar/SideBar';
+import ProfileOptions from '../profile-options/ProfileOptions';
 
 const NavBar = ({ history, movies, fetchSearchQuery, login, logout, auth }) => {
   const [search, setSearch] = useState(movies.search.query || '');
   const [showSidebar, toggleShowSidebar] = useState(false);
+  const [showOptions, toggleOptions] = useState(false);
+  const profileIcon = useRef();
 
   const handleChange = e => {
     setSearch(e.target.value);
@@ -27,14 +31,23 @@ const NavBar = ({ history, movies, fetchSearchQuery, login, logout, auth }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    fetchSearchQuery(search);
+    setSearch('')
     history.push(`/search/${search}`);
   };
 
+  const handleProfileClick = e => {
+    toggleOptions(!showOptions);
+  };
+
+  //todo logout function
   return (
     <Navbar>
       <LeftContainer>
         <SideBar open={showSidebar} setOpen={toggleShowSidebar} />
         <Logo to='/'>WATCHit</Logo>
+
+        wit
       </LeftContainer>
 
       <Form onSubmit={handleSubmit}>
@@ -53,15 +66,20 @@ const NavBar = ({ history, movies, fetchSearchQuery, login, logout, auth }) => {
 
       <RightContainer>
         {auth.isAuth ? (
-          <StyledLink onClick={logout} to='/'>
-            Logout
-          </StyledLink>
+          <UserIcon
+            ref={profileIcon}
+            className='profile fas fa-user-circle'
+            onClick={handleProfileClick}
+          />
         ) : (
           <StyledLink onClick={login} to='/'>
             Login
           </StyledLink>
         )}
       </RightContainer>
+      {showOptions && (
+        <ProfileOptions setShow={toggleOptions} profileIcon={profileIcon} />
+      )}
     </Navbar>
   );
 };

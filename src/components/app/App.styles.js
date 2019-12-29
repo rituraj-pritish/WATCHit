@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import sizes from '../../sizes'
+import sizes from '../../sizes';
 
 export const Global = createGlobalStyle`
   html {
@@ -12,18 +12,18 @@ export const Global = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: ${({theme}) => theme.text.primary};
+    color: ${({ theme }) => theme.text.primary};
   }
 
   a {
     text-decoration: none;
-    color: ${({theme,color}) => color ? color : theme.text.primary};
+    color: inherit;
   }
 
 `;
 
 export const AppContainer = styled.div`
-  background: ${({theme}) => theme.palette.bgColor};
+  background: ${({ theme }) => theme.palette.bgColor};
   font-size: 1.6rem;
   margin-top: 64px;
 

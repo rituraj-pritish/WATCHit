@@ -59,68 +59,75 @@ const Carousel = ({
     }
   };
 
-  const handleAdd = async (media_type, media_id, watchlist) => {
+  const handleAdd = async (media_type, media_id, watchlist, media) => {
     if (auth.isAuth) {
-      toggleWatchlist(user.user.id, { media_type, media_id, watchlist });
+      toggleWatchlist(user.user.id, { media_type, media_id, watchlist }, media);
     } else {
       setAlert('Login to continue', 'error');
     }
   };
 
-  const slides = data.map(
-    ({ poster_path, profile_path, id, name, title, vote_average }) => {
-      let inWatchlist;
-      if (mediaType === 'movie' && user.watchlist.movie) {
-        inWatchlist = user.watchlist.movie.find(item => item.id === id);
-      }
-
-      if (mediaType === 'tv' && user.watchlist.tv) {
-        inWatchlist = user.watchlist.tv.find(item => item.id === id);
-      }
-
-      return (
-        <CarouselItemContainer key={id}>
-          {(mediaType === 'movie' || mediaType === 'tv') && (
-            <>
-              <Added
-                show={inWatchlist}
-                data-tip='Added To Watchlist, Click to remove'
-                onClick={() => handleAdd(mediaType, id, false)}
-              >
-                <i className='fas fa-check' />
-              </Added>
-              <Add
-                show={!inWatchlist}
-                data-tip='Add To Watchlist'
-                onClick={() => handleAdd(mediaType, id, true)}
-              >
-                <i className='fas fa-plus' />
-              </Add>
-            </>
-          )}
-          <StyledLink to={`/${mediaType}/${id}`}>
-            <ImageContainer>
-              {vote_average > 0 && (
-                <Rating>
-                  <i className='fas fa-star' /> {vote_average}
-                </Rating>
-              )}
-
-              <CarouselImage
-                style={{
-                  background: `url(${`https://image.tmdb.org/t/p/original${
-                    poster_path ? poster_path : profile_path
-                  }`}) center center / cover no-repeat `
-                }}
-              />
-            </ImageContainer>
-
-            {name || title}
-          </StyledLink>
-        </CarouselItemContainer>
-      );
+  const slides = data.map(item => {
+    const {
+      poster_path,
+      profile_path,
+      id,
+      name,
+      title,
+      vote_average,
+      media_type
+    } = item;
+    mediaType = media_type || mediaType;
+    let inWatchlist;
+    if (mediaType === 'movie' && user.watchlist.movie) {
+      inWatchlist = user.watchlist.movie.find(item => item.id === id);
     }
-  );
+
+    if (mediaType === 'tv' && user.watchlist.tv) {
+      inWatchlist = user.watchlist.tv.find(item => item.id === id);
+    }
+
+    return (
+      <CarouselItemContainer key={id}>
+        {(mediaType === 'movie' || mediaType === 'tv') && (
+          <>
+            <Added
+              show={inWatchlist}
+              data-tip='Added To Watchlist, Click to remove'
+              onClick={() => handleAdd(mediaType, id, false, item)}
+            >
+              <i className='fas fa-check' />
+            </Added>
+            <Add
+              show={!inWatchlist}
+              data-tip='Add To Watchlist'
+              onClick={() => handleAdd(mediaType, id, true, item)}
+            >
+              <i className='fas fa-plus' />
+            </Add>
+          </>
+        )}
+        <StyledLink to={`/${mediaType || media_type}/${id}`}>
+          <ImageContainer>
+            {vote_average > 0 && (
+              <Rating>
+                <i className='fas fa-star' /> {vote_average}
+              </Rating>
+            )}
+
+            <CarouselImage
+              style={{
+                background: `url(${`https://image.tmdb.org/t/p/original${
+                  poster_path ? poster_path : profile_path
+                }`}) center center / cover no-repeat `
+              }}
+            />
+          </ImageContainer>
+          <p style={{margin: 0, fontSize: '1.5rem', marginTop: '-2px'}}>{name || title}</p>
+        </StyledLink>
+      </CarouselItemContainer>
+    );
+  });
 
   return (
     <CarouselCard>

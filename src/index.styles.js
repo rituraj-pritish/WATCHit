@@ -2,6 +2,33 @@ import styled from 'styled-components';
 import sizes from './sizes';
 import { Link } from 'react-router-dom';
 
+export const Container = styled.div`
+  padding: ${({ theme }) => theme.padding.xl};
+
+  @media ${sizes.lg} {
+    padding: ${({ theme }) => theme.padding.lg};
+  }
+
+  @media ${sizes.md} {
+    padding: ${({ theme }) => theme.padding.md};
+  }
+
+  @media ${sizes.sm} {
+    padding: ${({ theme }) => theme.padding.sm};
+  }
+`;
+
+export const Divider = styled.div`
+  width: 100%;
+  height: 2px;
+  background-image: radial-gradient(
+    circle,
+    rgba(210, 208, 208, 0.53) 0%,
+    rgba(210, 208, 208, 0.02) 90%
+  );
+  margin: 30px 0;
+`;
+
 export const BackgroundImage = styled.div`
   position: absolute;
   top: 0;

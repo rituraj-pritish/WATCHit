@@ -12,33 +12,33 @@ import {
   MovieDetailsContainer,
   BackdropContainer
 } from './MovieDetails.styles';
+import { Container, Divider } from '../../../index.styles';
 
 import Carousel from '../../carousel/Carousel';
 import Backdrop from '../../backdrop/Backdrop';
-import Overview from '../../overview/Overview'
+import Overview from '../../overview/Overview';
 
 const MovieDetails = ({
   match,
   history,
   fetchMovie,
   removeCurrentMovie,
-  movies
+  movies,
+  auth,
+  user
 }) => {
   useEffect(() => {
     fetchMovie(match.params.movie_id);
-  }, []);
 
-  useEffect(
-    () => () => {
+    return () => {
       removeCurrentMovie();
-    },
-    []
-  );
+    };
+  }, [match.params.movie_id]);
 
   if (!movies.current || movies.loading) return <Loader />;
-  console.log(movies.current);
 
   const {
+    id,
     title,
     backdrop_path,
     poster_path,
@@ -52,6 +52,16 @@ const MovieDetails = ({
     videos,
     credits: { cast }
   } = movies.current;
+
+  let favourite;
+  if (auth.isAuth) {
+    favourite = user.favourite.movie.find(movie => movie.id === id)
+      ? true
+      : false;
+  }
+
+  console.log(movies.current);
+
   return (
     <div>
       <BackdropContainer>
@@ -71,21 +81,41 @@ const MovieDetails = ({
           />
         )}
       </BackdropContainer>
-      <MovieDetailsContainer>
+      <Container>
         {videos.results.length > 0 && (
-          <Overview title={title} overview={overview} vote_average={vote_average} poster_path={poster_path} genres={genres} runtime={runtime}  />
+          <Overview
+            title={title}
+            overview={overview}
+            vote_average={vote_average}
+            poster_path={poster_path}
+            genres={genres}
+            runtime={runtime}
+            media_type='movie'
+            media_id={id}
+            media={movies.current}
+            favourite={favourite}
+          />
         )}
-
         <Carousel data={cast} mediaType='person' carouselTitle='Cast' />
-
-        <Carousel carouselTitle='Recommended' data={recommendations.results} mediaType='movie' />
-      </MovieDetailsContainer>
+        {recommendations.results.length > 0 && (
+          <>
+            <Divider />
+            <Carousel
+              carouselTitle='Recommended'
+              data={recommendations.results}
+              mediaType='movie'
+            />
+          </>
+        )}
+      </Container>
     </div>
   );
 };
 
 const mapStateToProps = state => ({
-  movies: state.movies
+  auth: state.auth,
+  movies: state.movies,
+  user: state.user
 });
 
 export default connect(

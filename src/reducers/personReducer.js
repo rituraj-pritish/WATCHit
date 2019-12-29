@@ -1,4 +1,4 @@
-import { SET_CURRENT_PERSON } from "../actions/types";
+import { SET_CURRENT_PERSON,REMOVE_CURRENT_PERSON } from "../actions/types";
 
 
 const initialState = {
@@ -13,6 +13,12 @@ export default (state=initialState,{type,payload}) => {
         ...state,
         loading: false,
         current: payload
+      }
+    case REMOVE_CURRENT_PERSON:
+      return {
+        ...state,
+        loading: false,
+        current: null
       }
     default:
       return state

@@ -12,6 +12,7 @@ import reducer from './reducers/index';
 
 import App from './components/app/App';
 import Loader from './components/loader/Loader';
+import './index.css';
 
 const persistConfig = {
   key: 'root',
