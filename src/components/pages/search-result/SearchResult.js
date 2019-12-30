@@ -23,6 +23,8 @@ const SearchResult = ({ match, movies }) => {
   );
   if (movies.loading || !movies.search.results) return <Loader />;
 
+  if(movies.search.results.length === 0) return <SearchResultsContainer>No results found :(</SearchResultsContainer>
+
   const results = movies.search.results.map(
     ({
       poster_path,

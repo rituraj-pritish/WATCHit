@@ -10,6 +10,7 @@ import {
   RightContainer,
   RoundedButton,
   Logo,
+  SmallLogo,
   Form,
   IconButton,
   UserIcon
@@ -32,7 +33,7 @@ const NavBar = ({ history, movies, fetchSearchQuery, login, logout, auth }) => {
   const handleSubmit = e => {
     e.preventDefault();
     fetchSearchQuery(search);
-    setSearch('')
+    setSearch('');
     history.push(`/search/${search}`);
   };
 
@@ -46,8 +47,7 @@ const NavBar = ({ history, movies, fetchSearchQuery, login, logout, auth }) => {
       <LeftContainer>
         <SideBar open={showSidebar} setOpen={toggleShowSidebar} />
         <Logo to='/'>WATCHit</Logo>
-
-        wit
+        <SmallLogo to='/'>Wit</SmallLogo>
       </LeftContainer>
 
       <Form onSubmit={handleSubmit}>

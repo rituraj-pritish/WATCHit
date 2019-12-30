@@ -115,7 +115,22 @@ export const Logo = styled(Link)`
   font-size: 3.5rem;
 
   @media ${sizes.md} {
+    font-size: 2rem;
+    margin-left: 20px;
+  }
+
+  @media ${sizes.sm} {
     display: none;
+  }
+`;
+
+export const SmallLogo = styled(Link)`
+  margin-left: 20px;
+  font-size: 1.9rem;
+  display: none;
+
+  @media ${sizes.sm} {
+    display: block;
   }
 `;
 
@@ -124,6 +139,10 @@ export const Form = styled.form`
   align-items: center;
   justify-content: center;
   width: 50%;
+
+  @media ${sizes.md} {
+    margin-left: 50px;
+  }
 `;
 
 export const UserIcon = styled.i`

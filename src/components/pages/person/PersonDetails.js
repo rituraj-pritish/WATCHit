@@ -12,6 +12,7 @@ import {
   PersonDetailsContainer,
   BackdropContainer
 } from './PersonDetails.styles';
+import { Divider } from '../../../index.styles';
 
 import Carousel from '../../carousel/Carousel';
 import Backdrop from '../../backdrop/Backdrop';
@@ -65,7 +66,7 @@ const PersonDetails = ({ match, getPerson, person, removeCurrentPerson }) => {
           overview={biography}
           poster_path={profile_path}
         />
-        <Carousel carouselTitle='Starred In' data={starredIn} mediaType='' />
+        <Carousel carouselTitle='Starred In' data={starredIn} />
       </PersonDetailsContainer>
     </div>
   );

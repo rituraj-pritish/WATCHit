@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import sizes from '../../sizes';
 
 export const ListItemContainer = styled.div`
   width: 100%;
@@ -10,6 +11,15 @@ export const ListItemContainer = styled.div`
   border-radius: 5px;
   overflow: hidden;
   display: flex;
+`;
+
+export const Poster = styled.div`
+  height: 100%;
+  min-width: 150px;
+
+  @media ${sizes.sm} {
+    display: none;
+  }
 `;
 
 export const Details = styled.div`
@@ -29,6 +39,10 @@ export const Details = styled.div`
     margin: 0;
     margin-right: 25px;
     display: inline-block;
+
+    @media ${sizes.sm} {
+      display: block;
+    }
   }
 `;
 
@@ -36,10 +50,14 @@ export const Buttons = styled.div`
   display: flex;
   position: absolute;
   bottom: 30px;
+
+  @media ${sizes.md} {
+    display: none;
+  }
 `;
 
 export const Icon = styled.i`
-  color: ${({isFavourite}) => isFavourite ? 'gold' : 'inherit'};
+  color: ${({ favourite }) => (favourite ? 'gold' : 'inherit')};
   background: #fff;
   margin-right: 12px;
   width: 30px;
@@ -59,5 +77,23 @@ export const Button = styled.div`
   &:hover ${Icon} {
     color: white;
     background: #c1c1c1;
+  }
+`;
+
+export const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+`;
+
+export const RemoveIcon = styled.i`
+  color: red;
+
+  &::before {
+    display: none;
+
+    @media ${sizes.md} {
+      display: block;
+    }
   }
 `;

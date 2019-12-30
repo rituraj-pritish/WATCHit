@@ -17,6 +17,7 @@ import { Container, Divider } from '../../../index.styles';
 import Carousel from '../../carousel/Carousel';
 import Backdrop from '../../backdrop/Backdrop';
 import Overview from '../../overview/Overview';
+import Reviews from '../../reviews/Reviews';
 
 const MovieDetails = ({
   match,
@@ -50,6 +51,7 @@ const MovieDetails = ({
     vote_average,
     recommendations,
     videos,
+    reviews,
     credits: { cast }
   } = movies.current;
 
@@ -107,6 +109,8 @@ const MovieDetails = ({
             />
           </>
         )}
+        <Divider/>
+        <Reviews reviews={reviews} />
       </Container>
     </div>
   );

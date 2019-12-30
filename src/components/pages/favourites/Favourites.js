@@ -10,7 +10,7 @@ const Favourites = ({ user: { favourite } }) => {
 
   return (
     <Container>
-      <h2 style={{ display: 'inline-block', marginRight: '60px' }}>
+      <h2 style={{ display: 'inline-block', marginRight: '50px' }}>
         My Favourites
       </h2>
       <Tab active={activeTab === 'movie'} onClick={() => setActiveTab('movie')}>
@@ -20,7 +20,10 @@ const Favourites = ({ user: { favourite } }) => {
       <Tab active={activeTab === 'tv'} onClick={() => setActiveTab('tv')}>
         TV Shows
       </Tab>
-      <List dataType='favourite' data={activeTab === 'movie' ? favourite.movie : favourite.tv} />
+      <List
+        dataType='favourite'
+        data={activeTab === 'movie' ? favourite.movie : favourite.tv}
+      />
     </Container>
   );
 };

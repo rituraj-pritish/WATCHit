@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import List from '../../list/List'
+import List from '../../list/List';
 import { Tab } from './Watchlist.styles';
 import { Container } from '../../../index.styles';
 import { Grid } from '../search-result/SearchResult.styles';
 
-const Watchlist = ({user:{watchlist}}) => {
+const Watchlist = ({ user: { watchlist } }) => {
   const [activeTab, setActiveTab] = useState('movie');
   return (
     <Container>
-      <h2 style={{ display: 'inline-block', marginRight: '60px' }}>
+      <h2 style={{ display: 'inline-block', marginRight: '50px' }}>
         My Watchlist
       </h2>
       <Tab active={activeTab === 'movie'} onClick={() => setActiveTab('movie')}>
@@ -20,8 +20,10 @@ const Watchlist = ({user:{watchlist}}) => {
       <Tab active={activeTab === 'tv'} onClick={() => setActiveTab('tv')}>
         TV Shows
       </Tab>
-
-      <List dataType='watchlist' data={activeTab === 'movie' ? watchlist.movie : watchlist.tv} />
+      <List
+        dataType='watchlist'
+        data={activeTab === 'movie' ? watchlist.movie : watchlist.tv}
+      />
     </Container>
   );
 };

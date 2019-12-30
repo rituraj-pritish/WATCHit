@@ -9,10 +9,14 @@ import {
   Details,
   Icon,
   Button,
-  Buttons
+  Buttons,
+  Poster,
+  RemoveIcon,
+  Header
 } from './ListItem.styles';
 
 const ListItem = ({
+  item,
   title,
   name,
   dataType,
@@ -26,11 +30,13 @@ const ListItem = ({
   user: { favourite, user }
 }) => {
   const mediaType = title ? 'movie' : 'tv';
-  let isFavourite;
+  let isFavourite = false;
   if (mediaType === 'movie') {
-    isFavourite = favourite.movie.find(media => media.id === id) ? true : false;
+    if (favourite.movie.length === 0) return;
+    isFavourite = favourite.movie.find(media => media.id === id) && true;
   } else {
-    isFavourite = favourite.tv.find(media => media.id === id) ? true : false;
+    if (favourite.tv.length === 0) return;
+    isFavourite = favourite.tv.find(media => media.id === id) && true;
   }
 
   const handleRemove = () => {
@@ -46,28 +52,33 @@ const ListItem = ({
   };
 
   const handleFavourite = () => {
-    toggleFavourite(user.id, {
-      media_id: id,
-      media_type: mediaType,
-      favorite: false
-    });
+    toggleFavourite(
+      user.id,
+      {
+        media_id: id,
+        media_type: mediaType,
+        favorite: isFavourite ? false : true
+      },
+      item
+    );
   };
 
   return (
     <ListItemContainer>
       <Link to={`/${mediaType}/${id}`}>
-        <div
+        <Poster
           style={{
-            background: `url(${`https://image.tmdb.org/t/p/original${poster_path}`}) center center / cover no-repeat`,
-            height: '100%',
-            minWidth: '150px'
+            background: `url(${`https://image.tmdb.org/t/p/original${poster_path}`}) center center / cover no-repeat`
           }}
         />
       </Link>
       <Details>
-        <Link to={`/${mediaType}/${id}`}>
-          <h3>{title || name}</h3>
-        </Link>
+        <Header>
+          <Link to={`/${mediaType}/${id}`}>
+            <h3>{title || name}</h3>
+          </Link>
+          <RemoveIcon className='fas fa-times' onClick={handleRemove} />
+        </Header>
         {release_date}
         <p>
           {overview
@@ -83,7 +94,7 @@ const ListItem = ({
             Remove
           </Button>
           <Button onClick={handleFavourite}>
-            <Icon className='fas fa-star' isFavourite={isFavourite} />
+            <Icon className='fas fa-star' favourite={isFavourite} />
             Favourite
           </Button>
         </Buttons>

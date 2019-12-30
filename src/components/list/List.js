@@ -5,7 +5,7 @@ const List = ({ data, dataType }) => {
   return (
     <div>
       {data.map(item => (
-        <ListItem dataType={dataType} key={item.id} {...item} />
+        <ListItem dataType={dataType} key={item.id} item={item} {...item} />
       ))}
     </div>
   );

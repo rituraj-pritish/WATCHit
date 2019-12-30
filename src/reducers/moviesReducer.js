@@ -45,8 +45,7 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         search: {
-          results: payload.results,
-          query: payload.query
+          results: payload.results
         },
         loading: false
       };
@@ -55,7 +54,6 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         search: {
           results: [],
-          query: ''
         },
         loading: false
       };

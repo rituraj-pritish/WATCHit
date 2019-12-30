@@ -18,6 +18,14 @@ export const FooterContainer = styled.div`
     list-style-type: none;
     padding: 0;
   }
+
+  @media ${sizes.md} {
+    padding: 30px 70px;
+  }
+
+  @media ${sizes.sm} {
+    height: 350px;
+  }
 `;
 
 export const TmdbLogo = styled.img`
@@ -37,18 +45,18 @@ export const Copyright = styled.div`
 
 export const SocialIcon = styled.i`
   font-size: 25px;
-`
+`;
 
 export const Icons = styled.div`
   display: flex;
   justify-content: space-around;
-`
+`;
 
 export const TmdbDetails = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`
+`;
 
 export const BigLinks = styled.div`
   display: flex;
@@ -58,7 +66,7 @@ export const BigLinks = styled.div`
   a {
     margin: 0 20px;
   }
-`
+`;
 
 export const FooterMiddle = styled.div`
   display: flex;
@@ -66,4 +74,9 @@ export const FooterMiddle = styled.div`
   width: 100%;
   flex-grow: 1;
   align-items: center;
-`
+
+  @media ${sizes.sm} {
+    flex-direction: column;
+    height: 200px;
+  }
+`;
