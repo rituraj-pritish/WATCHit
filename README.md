@@ -9,7 +9,7 @@ Checkout the app [here](https://watchit-watchit.herokuapp.com/)
 
 ![home](https://res.cloudinary.com/dyr3j7rgu/image/upload/v1577786636/watchit/home_eroo6m.png)
 
-![watchlist-gif](https://res.cloudinary.com/dyr3j7rgu/image/upload/v1577789806/watchit/watchlist-min_kqqmlr.gif)
+![watchlist-gif](https://res.cloudinary.com/dyr3j7rgu/image/upload/v1577791311/watchit/ezgif.com-gif-maker-min_t7vbvc.gif)
 
 ![fav-gif](https://res.cloudinary.com/dyr3j7rgu/image/upload/v1577789805/watchit/fav-min_ckgbdy.gif)
 
