@@ -5,6 +5,7 @@ export const Review = styled.div`
   color: #000;
   padding: 20px;
   margin-bottom: 15px;
+  overflow: hidden;
 
   h4 {
     margin-top: 0;

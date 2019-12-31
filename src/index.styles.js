@@ -5,6 +5,14 @@ import { Link } from 'react-router-dom';
 export const Container = styled.div`
   padding: ${({ theme }) => theme.padding.xl};
 
+  @media ${sizes.xxl} {
+    padding: 200px 500px;
+  }
+
+  @media ${sizes.xl} {
+    padding: 200px;
+  }
+
   @media ${sizes.lg} {
     padding: ${({ theme }) => theme.padding.lg};
   }
