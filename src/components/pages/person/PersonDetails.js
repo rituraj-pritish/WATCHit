@@ -22,6 +22,7 @@ import Overview from '../../overview/Overview';
 const PersonDetails = ({ match, getPerson, person, removeCurrentPerson }) => {
   useEffect(() => {
     getPerson(match.params.person_id);
+    window.scrollTo(0, 0);
 
     return () => {
       removeCurrentPerson();

@@ -68,7 +68,7 @@ const App = ({
 
   return (
     <ThemeProvider theme={theme}>
-      <Global/>
+      <Global />
       <Fragment>
         <Router>
           <NavBar />

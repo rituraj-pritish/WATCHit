@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import sizes from '../../../sizes';
 
 export const FooterContainer = styled.div`
-  justify-self: flex-end;
   box-sizing: border-box;
   clear: both;
-  position: relative;
+  position: absolute;
+  bottom: 0;
   padding: 50px 100px;
   width: 100%;
   height: 50vh;
+  margin-bottom: -50vh;
   background: #000;
   display: flex;
   flex-direction: column;
@@ -19,12 +20,23 @@ export const FooterContainer = styled.div`
     padding: 0;
   }
 
+  @media ${sizes.xxl} {
+    height: 25vh;
+    margin-bottom: -25vh;
+  }
+
+  @media ${sizes.xl} {
+    height: 40vh;
+    margin-bottom: -40vh;
+  }
+
   @media ${sizes.md} {
     padding: 30px 70px;
   }
 
   @media ${sizes.sm} {
     height: 350px;
+    margin-bottom: -350px;
   }
 `;
 

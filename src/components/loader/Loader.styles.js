@@ -1,4 +1,5 @@
-import styled,{keyframes} from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import sizes from '../../sizes';
 
 export const LoaderContainer = styled.div`
   background: linear-gradient(to right, #7c34b3, #c93a53);
@@ -12,7 +13,13 @@ export const LoaderContainer = styled.div`
   align-items: center;
   width: 100vw;
   height: 100vh;
+  z-index: 10;
   transition: opacity 0.5s;
+  overflow: hidden;
+
+  @media ${sizes.md} {
+    top: 50px;
+  }
 `;
 
 const Big = keyframes`
@@ -27,7 +34,7 @@ const Big = keyframes`
   100% {
     transform: scale(0)
   }
-`
+`;
 
 export const Circle = styled.div`
   position: absolute;
@@ -39,4 +46,3 @@ export const Circle = styled.div`
   animation: ${Big} 2s ease-in-out infinite;
   animation-delay: ${props => props.delay};
 `;
-

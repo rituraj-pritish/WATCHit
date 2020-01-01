@@ -29,13 +29,13 @@ const ImageSlider = ({ data, slideTime, link }) => {
       if (item.backdrop_path || item.file_path) return item;
     })
     .map(({ title, vote_average, backdrop_path, file_path, id }) => (
-      <Slide style={{ position: 'relative' }} key={id}>
+      <Slide style={{ position: 'relative' }} key={id || file_path}>
         {link && (
           <Link to={`/movie/${id}`}>
             <ImageOverlay />
             <OverlayContent>
               <h1>{title}</h1>
-              <div style={{marginLeft: '20px'}}>
+              <div style={{ marginLeft: '20px' }}>
                 <i style={{ color: 'red' }} className='fas fa-heart' />{' '}
                 {vote_average * 10} %
               </div>

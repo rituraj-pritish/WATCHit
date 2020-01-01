@@ -3,14 +3,14 @@ import sizes from './sizes';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
-  padding: ${({ theme }) => theme.padding.xl};
+  padding: 100px;
 
   @media ${sizes.xxl} {
     padding: 200px 500px;
   }
 
   @media ${sizes.xl} {
-    padding: 200px;
+    padding: 150px 300px;
   }
 
   @media ${sizes.lg} {

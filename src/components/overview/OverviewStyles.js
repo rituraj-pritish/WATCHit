@@ -40,8 +40,11 @@ export const OverviewDetails = styled.div`
 export const Poster = styled.div`
   min-width: 16rem;
   height: 24rem;
-
   grid-area: poster;
+
+  @media ${sizes.xxl} {
+    height: 36rem;
+  }
 `;
 
 export const Title = styled.div`

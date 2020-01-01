@@ -30,6 +30,7 @@ const MovieDetails = ({
 }) => {
   useEffect(() => {
     fetchMovie(match.params.movie_id);
+    window.scrollTo(0, 0);
 
     return () => {
       removeCurrentMovie();
@@ -61,8 +62,6 @@ const MovieDetails = ({
       ? true
       : false;
   }
-
-  console.log(movies.current);
 
   return (
     <div>
@@ -109,7 +108,7 @@ const MovieDetails = ({
             />
           </>
         )}
-        <Divider/>
+        <Divider />
         <Reviews reviews={reviews} />
       </Container>
     </div>

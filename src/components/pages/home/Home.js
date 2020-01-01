@@ -7,13 +7,13 @@ import { connect } from 'react-redux';
 
 import Carousel from '../../carousel/Carousel';
 import { GradientButton, HomeContainer, ButtonsContainer } from './HomeStyles';
-import { Divider } from '../../../index.styles';
+import { Divider,Container } from '../../../index.styles';
 
 const Home = ({ movies: { nowPlaying, discover },tv }) => {
   return (
     <div>
       <ImageSlider data={nowPlaying.results} slideTime={3000} link />
-      <HomeContainer>
+      <Container>
         <ButtonsContainer>
           <GradientButton to='/discover/movies'>Movies</GradientButton>
           <GradientButton to='/discover/tv-shows'>TV Shows</GradientButton>
@@ -31,7 +31,7 @@ const Home = ({ movies: { nowPlaying, discover },tv }) => {
           carouselTitle='Top Rated Series'
         />
         <Divider />
-      </HomeContainer>
+      </Container>
     </div>
   );
 };

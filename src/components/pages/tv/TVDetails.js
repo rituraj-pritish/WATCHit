@@ -22,6 +22,7 @@ import Backdrop from '../../backdrop/Backdrop';
 const TVDetails = ({ match, getShow, tv, removeCurrentTv, auth, user }) => {
   useEffect(() => {
     getShow(match.params.tv_id);
+    window.scrollTo(0, 0);
 
     return () => {
       removeCurrentTv();
