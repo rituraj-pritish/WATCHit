@@ -1,15 +1,13 @@
 import React from 'react';
 import ImageSlider from '../../image-slider/ImageSlider';
-import { Link } from 'react-router-dom';
 
-import { StyledLink } from '../../../index.styles';
 import { connect } from 'react-redux';
 
 import Carousel from '../../carousel/Carousel';
-import { GradientButton, HomeContainer, ButtonsContainer } from './HomeStyles';
-import { Divider,Container } from '../../../index.styles';
+import { GradientButton, ButtonsContainer } from './HomeStyles';
+import { Divider, Container } from '../../../index.styles';
 
-const Home = ({ movies: { nowPlaying, discover },tv }) => {
+const Home = ({ movies: { nowPlaying, discover }, tv }) => {
   return (
     <div>
       <ImageSlider data={nowPlaying.results} slideTime={3000} link />

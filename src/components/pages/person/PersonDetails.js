@@ -4,18 +4,9 @@ import { connect } from 'react-redux';
 import { getPerson, removeCurrentPerson } from '../../../actions/personActions';
 
 import Loader from '../../loader/Loader';
-import {
-  Icon,
-  DetailsOverviewContainer,
-  Rating,
-  Poster,
-  PersonDetailsContainer,
-  BackdropContainer
-} from './PersonDetails.styles';
-import { Divider } from '../../../index.styles';
+import { Container } from '../../../index.styles';
 
 import Carousel from '../../carousel/Carousel';
-import Backdrop from '../../backdrop/Backdrop';
 import ImageSlider from '../../image-slider/ImageSlider';
 import Overview from '../../overview/Overview';
 
@@ -35,13 +26,6 @@ const PersonDetails = ({ match, getPerson, person, removeCurrentPerson }) => {
     name,
     biography,
     profile_path,
-    poster_path,
-    overview,
-    tagline,
-    runtime,
-    vote_count,
-    vote_average,
-    videos,
     tagged_images,
     images,
     combined_credits: { cast }
@@ -61,14 +45,14 @@ const PersonDetails = ({ match, getPerson, person, removeCurrentPerson }) => {
         }
         slideTime={5000}
       />
-      <PersonDetailsContainer>
+      <Container>
         <Overview
           title={name}
           overview={biography}
           poster_path={profile_path}
         />
         <Carousel carouselTitle='Starred In' data={starredIn} />
-      </PersonDetailsContainer>
+      </Container>
     </div>
   );
 };

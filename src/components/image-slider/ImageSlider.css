@@ -9,6 +9,7 @@
 @media (max-width: 700px) {
   .custom-swiper-container {
     height: 65vh;
+    margin-top: 50px;
   }
 
   .swiper-pagination {

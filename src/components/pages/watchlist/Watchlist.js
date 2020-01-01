@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import List from '../../list/List';
 import { Tab } from './Watchlist.styles';
 import { Container } from '../../../index.styles';
-import { Grid } from '../search-result/SearchResult.styles';
 
 const Watchlist = ({ user: { watchlist } }) => {
   const [activeTab, setActiveTab] = useState('movie');

@@ -6,11 +6,6 @@ import { getShow, removeCurrentTv } from '../../../actions/tvActions';
 
 import Loader from '../../loader/Loader';
 import {
-  Icon,
-  DetailsOverviewContainer,
-  Rating,
-  Poster,
-  MovieDetailsContainer,
   BackdropContainer
 } from './TVDetails.styles';
 import { Container, Divider } from '../../../index.styles';
@@ -37,9 +32,6 @@ const TVDetails = ({ match, getShow, tv, removeCurrentTv, auth, user }) => {
     backdrop_path,
     poster_path,
     overview,
-    tagline,
-    runtime,
-    vote_count,
     vote_average,
     recommendations,
     videos,

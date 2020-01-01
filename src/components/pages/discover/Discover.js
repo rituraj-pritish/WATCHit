@@ -8,7 +8,7 @@ const Discover = ({movies,getDiscover}) => {
 
   useEffect(() => {
     getDiscover()
-  },[])
+  },[getDiscover])
   
   return (
     <div>

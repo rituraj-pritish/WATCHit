@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { removeSearchResults } from '../../../actions/moviesActions';
@@ -8,8 +8,6 @@ import {
   Poster,
   PosterDetails,
   PosterContainer,
-  PosterOverlay,
-  OverlayContent,
   StyledLink
 } from './SearchResult.styles';
 import Loader from '../../loader/Loader';
@@ -23,7 +21,8 @@ const SearchResult = ({ match, movies }) => {
   );
   if (movies.loading || !movies.search.results) return <Loader />;
 
-  if(movies.search.results.length === 0) return <SearchResultsContainer>No results found :(</SearchResultsContainer>
+  if (movies.search.results.length === 0)
+    return <SearchResultsContainer>No results found :(</SearchResultsContainer>;
 
   const results = movies.search.results.map(
     ({

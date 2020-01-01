@@ -42,7 +42,7 @@ const Options = styled.div`
 const ProfileOptions = ({ setShow, profileIcon,logout }) => {
   const node = useRef();
   const handleClick = e => {
-    if (e.target == profileIcon.current) return;
+    if (e.target === profileIcon.current) return;
     if (!node.current.contains(e.target)) {
       setShow(false);
     }

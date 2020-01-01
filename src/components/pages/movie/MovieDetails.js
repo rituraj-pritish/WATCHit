@@ -5,11 +5,6 @@ import { fetchMovie, removeCurrentMovie } from '../../../actions/moviesActions';
 
 import Loader from '../../loader/Loader';
 import {
-  Icon,
-  DetailsOverviewContainer,
-  Rating,
-  Poster,
-  MovieDetailsContainer,
   BackdropContainer
 } from './MovieDetails.styles';
 import { Container, Divider } from '../../../index.styles';
@@ -45,10 +40,8 @@ const MovieDetails = ({
     backdrop_path,
     poster_path,
     overview,
-    tagline,
     genres,
     runtime,
-    vote_count,
     vote_average,
     recommendations,
     videos,

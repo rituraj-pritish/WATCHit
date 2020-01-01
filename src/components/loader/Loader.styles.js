@@ -16,10 +16,6 @@ export const LoaderContainer = styled.div`
   z-index: 10;
   transition: opacity 0.5s;
   overflow: hidden;
-
-  @media ${sizes.md} {
-    top: 50px;
-  }
 `;
 
 const Big = keyframes`

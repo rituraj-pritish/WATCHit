@@ -10,7 +10,6 @@ import {
   TmdbDetails,
   BigLinks,
   FooterMiddle,
-  SiteLinks
 } from './Footer.styles';
 
 const Footer = () => {
