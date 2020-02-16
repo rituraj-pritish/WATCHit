@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
-import { SidebarContainer } from './SidBar.styles';
+import { SidebarContainer, StyledSidebar } from './SidBar.styles';
 import Hamburger from '../../Hamburger';
 
 const SideBar = ({ open, setOpen }) => {
@@ -24,9 +24,9 @@ const SideBar = ({ open, setOpen }) => {
 
   useOnClickOutside(node, () => setOpen(false));
   return (
-    <div ref={node}>
+    <SidebarContainer ref={node}>
       <Hamburger open={open} setOpen={setOpen} />
-      <SidebarContainer ref={node} open={open}>
+      <StyledSidebar ref={node} open={open}>
         <ul onClick={() => setOpen(false)}>
           <li key='3'>
             <Link to='/'>Home</Link>
@@ -38,8 +38,8 @@ const SideBar = ({ open, setOpen }) => {
             <Link to='/discover/tv-shows'>TV Shows</Link>
           </li>
         </ul>
-      </SidebarContainer>
-    </div>
+      </StyledSidebar>
+    </SidebarContainer>
   );
 };
 

@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { getPerson, removeCurrentPerson } from '../../../actions/personActions';
 
 import Loader from '../../loader/Loader';
-import { Container } from '../../../index.styles';
-
+import Page from '../../ui/Page';
 import Carousel from '../../carousel/Carousel';
 import ImageSlider from '../../image-slider/ImageSlider';
 import Overview from '../../overview/Overview';
+import { FullHeightMediaContainer } from '../../../index.styles';
 
 const PersonDetails = ({ match, getPerson, person, removeCurrentPerson }) => {
   useEffect(() => {
@@ -37,22 +37,25 @@ const PersonDetails = ({ match, getPerson, person, removeCurrentPerson }) => {
     .filter((item, idx) => idx < 20);
   return (
     <div>
-      <ImageSlider
-        data={
-          tagged_images.results.length > 0
-            ? tagged_images.results
-            : images.profiles
-        }
-        slideTime={5000}
-      />
-      <Container>
+      <FullHeightMediaContainer>
+        <ImageSlider
+          data={
+            tagged_images.results.length > 0
+              ? tagged_images.results
+              : images.profiles
+          }
+          slideTime={5000}
+        />
+      </FullHeightMediaContainer>
+
+      <Page>
         <Overview
           title={name}
           overview={biography}
           poster_path={profile_path}
         />
         <Carousel carouselTitle='Starred In' data={starredIn} />
-      </Container>
+      </Page>
     </div>
   );
 };
@@ -61,7 +64,6 @@ const mapStateToProps = state => ({
   person: state.person
 });
 
-export default connect(
-  mapStateToProps,
-  { getPerson, removeCurrentPerson }
-)(PersonDetails);
+export default connect(mapStateToProps, { getPerson, removeCurrentPerson })(
+  PersonDetails
+);

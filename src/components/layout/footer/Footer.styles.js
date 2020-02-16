@@ -3,40 +3,31 @@ import sizes from '../../../sizes';
 
 export const FooterContainer = styled.div`
   box-sizing: border-box;
-  clear: both;
-  position: absolute;
-  bottom: 0;
-  padding: 50px 100px;
   width: 100%;
-  height: 50vh;
-  margin-bottom: -50vh;
+  height: auto;
   background: #000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin-top: auto;
 
   ul {
     list-style-type: none;
     padding: 0;
   }
+`;
 
-  @media ${sizes.xxl} {
-    height: 25vh;
-    margin-bottom: -25vh;
-  }
-
-  @media ${sizes.xl} {
-    height: 40vh;
-    margin-bottom: -40vh;
-  }
+export const MaxWidthContainer = styled.div`
+  max-width: ${({ theme }) => theme.maxWidth};
+  padding: 50px ${({ theme }) => theme.padding.xl};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
 
   @media ${sizes.md} {
-    padding: 30px 70px;
+    padding: 50px ${({ theme }) => theme.padding.md};
   }
 
-  @media ${sizes.sm} {
-    height: 350px;
-    margin-bottom: -350px;
+  @media ${sizes.mob} {
+    padding: 50px ${({ theme }) => theme.padding.mob};
   }
 `;
 
@@ -53,10 +44,12 @@ export const Copyright = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 2rem;
 `;
 
 export const SocialIcon = styled.i`
   font-size: 25px;
+  margin: 1rem 0;
 `;
 
 export const Icons = styled.div`

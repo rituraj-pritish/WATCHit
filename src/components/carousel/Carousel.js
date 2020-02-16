@@ -117,13 +117,15 @@ const Carousel = ({
 
             <CarouselImage
               style={{
-                background: `url(${`https://image.tmdb.org/t/p/original${
+                background: `url(${`https://image.tmdb.org/t/p/w154${
                   poster_path ? poster_path : profile_path
                 }`}) center center / cover no-repeat `
               }}
             />
           </ImageContainer>
-          <p style={{margin: 0, fontSize: '1.5rem', marginTop: '-2px'}}>{name || title}</p>
+          <p style={{ margin: 0, fontSize: '1.5rem', marginTop: '-2px' }}>
+            {name || title}
+          </p>
         </StyledLink>
       </CarouselItemContainer>
     );
@@ -143,7 +145,8 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(
-  mapStateToProps,
-  { openModal, setAlert, toggleWatchlist }
-)(Carousel);
+export default connect(mapStateToProps, {
+  openModal,
+  setAlert,
+  toggleWatchlist
+})(Carousel);

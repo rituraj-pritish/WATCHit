@@ -5,12 +5,6 @@
   position: relative;
 }
 
-@media (min-width: 1921px) {
-  .custom-swiper-container-corousel {
-    height: 680px;
-  }
-}
-
 @media (max-width: 500px) {
   .custom-swiper-container-corousel {
     height: 290px;

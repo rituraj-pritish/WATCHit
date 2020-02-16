@@ -3,16 +3,17 @@ import { connect } from 'react-redux';
 
 import { discoverTv } from '../../../actions/tvActions';
 
+import Page from '../../ui/Page'
 import Carousel from '../../carousel/Carousel';
 import Loader from '../../loader/Loader';
-import { Container, Divider } from '../../../index.styles';
+import { Divider } from '../../../index.styles';
 
 const TVShows = ({ tv, discoverTv }) => {
   const { airing_today, topRated, popular } = tv.discover;
   if (tv.loading || !airing_today || !topRated || !popular) return <Loader />;
 
   return (
-    <Container>
+    <Page>
       <Carousel
         carouselTitle='Airing Today'
         data={airing_today}
@@ -22,7 +23,7 @@ const TVShows = ({ tv, discoverTv }) => {
       <Carousel carouselTitle='Trending' data={popular} mediaType='tv' />
       <Divider />
       <Carousel carouselTitle='Top Rated' data={topRated} mediaType='tv' />
-    </Container>
+    </Page>
   );
 };
 

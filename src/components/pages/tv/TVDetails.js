@@ -4,11 +4,12 @@ import ReactPlayer from 'react-player';
 
 import { getShow, removeCurrentTv } from '../../../actions/tvActions';
 
+import Page from '../../ui/Page'
 import Loader from '../../loader/Loader';
 import {
   BackdropContainer
 } from './TVDetails.styles';
-import { Container, Divider } from '../../../index.styles';
+import { Divider, FullHeightMediaContainer } from '../../../index.styles';
 
 import Overview from '../../overview/Overview';
 import Carousel from '../../carousel/Carousel';
@@ -45,7 +46,7 @@ const TVDetails = ({ match, getShow, tv, removeCurrentTv, auth, user }) => {
 
   return (
     <div>
-      <BackdropContainer>
+      <FullHeightMediaContainer>
         {videos.results.length > 0 ? (
           <ReactPlayer
             width='100%'
@@ -61,8 +62,8 @@ const TVDetails = ({ match, getShow, tv, removeCurrentTv, auth, user }) => {
             vote_average={vote_average}
           />
         )}
-      </BackdropContainer>
-      <Container>
+      </FullHeightMediaContainer>
+      <Page>
         {videos.results.length > 0 && (
           <Overview
             title={name}
@@ -83,7 +84,7 @@ const TVDetails = ({ match, getShow, tv, removeCurrentTv, auth, user }) => {
           mediaType='tv'
           carouselTitle='Recommended'
         />
-      </Container>
+      </Page>
     </div>
   );
 };

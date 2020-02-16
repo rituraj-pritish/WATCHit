@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import sizes from '../sizes'
 
 const StyledBurger = styled.button`
   display: flex;

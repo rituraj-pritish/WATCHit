@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import { Tab } from './Favourites.styles';
-import { Container } from '../../../index.styles';
+import Page from '../../ui/Page'
 import List from '../../list/List';
 
 const Favourites = ({ user: { favourite } }) => {
   const [activeTab, setActiveTab] = useState('movie');
 
   return (
-    <Container>
+    <Page>
       <h2 style={{ display: 'inline-block', marginRight: '50px' }}>
         My Favourites
       </h2>
@@ -24,7 +24,7 @@ const Favourites = ({ user: { favourite } }) => {
         dataType='favourite'
         data={activeTab === 'movie' ? favourite.movie : favourite.tv}
       />
-    </Container>
+    </Page>
   );
 };
 

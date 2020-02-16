@@ -43,7 +43,7 @@ const ImageSlider = ({ data, slideTime, link }) => {
 
             <BackgroundImage
               style={{
-                background: `url(${`https://image.tmdb.org/t/p/original${backdrop_path ||
+                background: `url(${`https://image.tmdb.org/t/p/w1280${backdrop_path ||
                   file_path}`}) center top / cover no-repeat`
               }}
             />
@@ -51,7 +51,7 @@ const ImageSlider = ({ data, slideTime, link }) => {
         )}
         <BackgroundImage
           style={{
-            background: `url(${`https://image.tmdb.org/t/p/original${backdrop_path ||
+            background: `url(${`https://image.tmdb.org/t/p/w1280${backdrop_path ||
               file_path}`}) center top / cover no-repeat`
           }}
         />

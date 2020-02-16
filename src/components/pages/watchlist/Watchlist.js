@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 
 import List from '../../list/List';
 import { Tab } from './Watchlist.styles';
-import { Container } from '../../../index.styles';
+import Page from '../../ui/Page'
 
 const Watchlist = ({ user: { watchlist } }) => {
   const [activeTab, setActiveTab] = useState('movie');
   return (
-    <Container>
+    <Page>
       <h2 style={{ display: 'inline-block', marginRight: '50px' }}>
         My Watchlist
       </h2>
@@ -23,7 +23,7 @@ const Watchlist = ({ user: { watchlist } }) => {
         dataType='watchlist'
         data={activeTab === 'movie' ? watchlist.movie : watchlist.tv}
       />
-    </Container>
+    </Page>
   );
 };
 

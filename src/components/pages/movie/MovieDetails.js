@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import ReactPlayer from 'react-player';
 import { fetchMovie, removeCurrentMovie } from '../../../actions/moviesActions';
 
+import Page from '../../ui/Page'
 import Loader from '../../loader/Loader';
 import {
   BackdropContainer
 } from './MovieDetails.styles';
-import { Container, Divider } from '../../../index.styles';
+import { Divider, FullHeightMediaContainer } from '../../../index.styles';
 
 import Carousel from '../../carousel/Carousel';
 import Backdrop from '../../backdrop/Backdrop';
@@ -58,7 +59,7 @@ const MovieDetails = ({
 
   return (
     <div>
-      <BackdropContainer>
+      <FullHeightMediaContainer>
         {videos.results.length > 0 ? (
           <ReactPlayer
             width='100%'
@@ -74,8 +75,8 @@ const MovieDetails = ({
             vote_average={vote_average}
           />
         )}
-      </BackdropContainer>
-      <Container>
+      </FullHeightMediaContainer>
+      <Page>
         {videos.results.length > 0 && (
           <Overview
             title={title}
@@ -103,7 +104,7 @@ const MovieDetails = ({
         )}
         <Divider />
         <Reviews reviews={reviews} />
-      </Container>
+      </Page>
     </div>
   );
 };

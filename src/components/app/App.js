@@ -14,10 +14,10 @@ import {
   discoverMovies
 } from '../../actions/moviesActions';
 import { getSession } from '../../actions/authActions';
-import { AppContainer, Global } from './App.styles';
 import theme from '../../theme';
 import { discoverTv } from '../../actions/tvActions';
 
+import ScrollToTop from '../ScrollToTop';
 import NavBar from '../layout/navbar/NavBar';
 import Home from '../pages/home/Home';
 import Loader from '../loader/Loader';
@@ -68,11 +68,10 @@ const App = ({
 
   return (
     <ThemeProvider theme={theme}>
-      <Global />
       <Fragment>
         <Router>
           <NavBar />
-          <AppContainer>
+          <ScrollToTop>
             <Switch>
               <Route exact path='/movie/:movie_id' component={MovieDetails} />
               <Route exact path='/tv/:tv_id' component={TVDetails} />
@@ -103,7 +102,7 @@ const App = ({
               />
               <Route path='/' component={Home} />
             </Switch>
-          </AppContainer>
+          </ScrollToTop>
           <PlaylistModal open={user.modalOpen} closeModal={closeModal} />
           <Footer />
         </Router>
@@ -119,16 +118,13 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(
-  mapStateToProps,
-  {
-    fetchNowPlayingMovies,
-    getSession,
-    getUser,
-    closeModal,
-    fetchWatchlists,
-    fetchFavourites,
-    discoverMovies,
-    discoverTv
-  }
-)(App);
+export default connect(mapStateToProps, {
+  fetchNowPlayingMovies,
+  getSession,
+  getUser,
+  closeModal,
+  fetchWatchlists,
+  fetchFavourites,
+  discoverMovies,
+  discoverTv
+})(App);

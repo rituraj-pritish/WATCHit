@@ -1,9 +1,9 @@
-import styled from 'styled-components'
-import sizes from '../../sizes'
+import styled from 'styled-components';
+import sizes from '../../sizes';
 
 export const BackdropContainer = styled.div`
   position: relative;
-  height: 90vh;
+  height: calc(100vh - 64px);
 
   @media ${sizes.md} {
     height: 65vh;
@@ -16,7 +16,7 @@ export const BackdropOverlay = styled.div`
   top: 0;
   z-index: 4;
   width: 100%;
-  height: 90vh;
+  height: calc(100vh - 64px);
   color: white;
 
   @media ${sizes.md} {

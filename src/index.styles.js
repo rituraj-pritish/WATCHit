@@ -2,30 +2,6 @@ import styled from 'styled-components';
 import sizes from './sizes';
 import { Link } from 'react-router-dom';
 
-export const Container = styled.div`
-  padding: 100px;
-
-  @media ${sizes.xxl} {
-    padding: 200px 500px;
-  }
-
-  @media ${sizes.xl} {
-    padding: 150px 300px;
-  }
-
-  @media ${sizes.lg} {
-    padding: ${({ theme }) => theme.padding.lg};
-  }
-
-  @media ${sizes.md} {
-    padding: ${({ theme }) => theme.padding.md};
-  }
-
-  @media ${sizes.sm} {
-    padding: ${({ theme }) => theme.padding.sm};
-  }
-`;
-
 export const Divider = styled.div`
   width: 100%;
   height: 2px;
@@ -37,15 +13,26 @@ export const Divider = styled.div`
   margin: 30px 0;
 `;
 
+export const FullHeightMediaContainer = styled.div`
+  width: 100%;
+  padding-top: ${({theme}) => theme.navHeight.aboveMd};
+  height: calc(100vh - 64px);
+
+  @media ${sizes.md} {
+    padding-top: ${({theme}) => theme.navHeight.belowMd};
+    height: 65vh;
+  }
+`
+
 export const BackgroundImage = styled.div`
   position: absolute;
   top: 0;
   width: 100%;
-  height: 90vh;
+  height: 100%;
 
-  @media ${sizes.md} {
+  /* @media ${sizes.md} {
     height: 65vh;
-  }
+  } */
 `;
 
 export const ImageOverlay = styled.div`
@@ -53,14 +40,14 @@ export const ImageOverlay = styled.div`
   top: 0;
   z-index: 4;
   width: 100%;
-  height: 90vh;
+  height: 100%
   color: white;
   background: #000;
   opacity: 0.6;
 
-  @media ${sizes.md} {
+  /* @media ${sizes.md} {
     height: 65vh;
-  }
+  } */
 `;
 
 export const OverlayContent = styled.div`

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
+import Page from '../../ui/Page';
 import { removeSearchResults } from '../../../actions/moviesActions';
 import {
-  SearchResultsContainer,
   Grid,
   Poster,
   PosterDetails,
@@ -22,7 +22,7 @@ const SearchResult = ({ match, movies }) => {
   if (movies.loading || !movies.search.results) return <Loader />;
 
   if (movies.search.results.length === 0)
-    return <SearchResultsContainer>No results found :(</SearchResultsContainer>;
+    return <Page>No results found :(</Page>;
 
   const results = movies.search.results.map(
     ({
@@ -60,9 +60,9 @@ const SearchResult = ({ match, movies }) => {
   );
 
   return (
-    <SearchResultsContainer>
+    <Page>
       <Grid>{results.map(item => item)}</Grid>
-    </SearchResultsContainer>
+    </Page>
   );
 };
 
@@ -70,7 +70,4 @@ const mapStateToProps = state => ({
   movies: state.movies
 });
 
-export default connect(
-  mapStateToProps,
-  { removeSearchResults }
-)(SearchResult);
+export default connect(mapStateToProps, { removeSearchResults })(SearchResult);

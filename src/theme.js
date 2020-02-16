@@ -9,10 +9,14 @@ export default {
     primary: 'white',
     secondary: 'black'
   },
-  padding: {
-    xl: '100px',
-    lg: '50px',
+padding: {
+    xl: '50px',
     md: '30px',
-    sm: '10px'
-  }
+    mob: '10px'
+  },
+  navHeight: {
+    aboveMd: '64px',
+    belowMd: '50px'
+  },
+  maxWidth: '1355px'
 };

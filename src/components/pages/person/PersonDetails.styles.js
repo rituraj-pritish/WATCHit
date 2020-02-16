@@ -19,7 +19,7 @@ export const PersonDetailsContainer = styled.div`
 
 export const BackdropContainer = styled.div`
   position: relative;
-  height: 90vh;
+  height: calc(100vh - 64px);
 
   @media ${sizes.md} {
     height: 65vh;

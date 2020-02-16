@@ -17,33 +17,17 @@ export const MovieDetailsContainer = styled.div`
   }
 `;
 
-export const BackdropContainer = styled.div`
-  position: relative;
-  height: 90vh;
-
-  @media ${sizes.md} {
-    height: 65vh;
-  }
-
-  @media ${sizes.sm} {
-    height: 40vh;
-  }
-`;
-
 export const Icon = styled.i`
   color: ${({ theme, color }) => color || theme.palette.gold};
   cursor: pointer;
   font-size: ${props => props.size + 'rem'};
   margin: ${props => props.margin};
-`
+`;
 
 export const Rating = styled.div`
   display: inline-flex;
   align-items: baseline;
 `;
-
-
-
 
 export const DetailsOverviewContainer = styled.div`
   position: relative;
@@ -56,7 +40,6 @@ export const Overview = styled.div`
   justify-content: center;
   align-items: flex-start;
 `;
-
 
 export const Poster = styled.div`
   min-width: 16rem;
