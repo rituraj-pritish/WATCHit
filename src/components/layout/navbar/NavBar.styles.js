@@ -152,6 +152,7 @@ export const Form = styled.form`
 export const UserIcon = styled.i`
   font-size: 27px;
   cursor: pointer;
+  margin-top: -4px;
 
   @media ${sizes.md} {
     font-size: 30px;
